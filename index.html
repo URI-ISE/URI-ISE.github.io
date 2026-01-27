@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URI-ISE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: #111;
+            border-bottom: 1px solid #222;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .section p, .section ul {
+            color: #aaa;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .section ul {
+            margin-left: 1.5rem;
+        }
+
+        .section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .section strong {
+            color: #e0e0e0;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: #888;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-left: 0;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-brand">URI-ISE</a>
+            <ul class="nav-links">
+                <li><a href="./hanoi/">Hanoi Algorithms</a></li>
+                <li><a href="./rsvp-reading/">RSVP Reading</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>University of Rhode Island - Industrial & Systems Engineering</h1>
+        <p class="subtitle">Advanced systems research and engineering development</p>
+
+        <div class="section">
+            <h2>🏛 Mission</h2>
+            <p>Bridging the gap between academic theory and industrial application, this organization hosts codebases for:</p>
+            <ul>
+                <li><strong>Graduate Research:</strong> Industry 4.0, Shipyard 4.0, Testbed Development, and OT Security.</li>
+                <li><strong>Capstone Design:</strong> Senior engineering projects focused on applied systems and prototyping.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔬 Research Areas</h2>
+            <ul>
+                <li><strong>Intelligent Systems:</strong> Computer Vision, Machine Learning, and Optimization.</li>
+                <li><strong>Cyber-Physical Systems:</strong> Routing, Robotics, and Manufacturing Security.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📚 Projects</h2>
+            <p>Click on project names in the navigation bar to explore our work.</p>
+        </div>
+
+        <div class="footer">
+            <p>Maintained by the Systems Engineering Research Group.</p>
+            <p>Contact: <a href="mailto:luke.pepin@uri.edu">luke.pepin@uri.edu</a></p>
+        </div>
+    </div>
+</body>
+</html>

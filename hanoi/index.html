@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower of Hanoi - Interactive Solver</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: 1px solid #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #2a2a2a;
+        }
+
+        button.primary {
+            background: #2196f3;
+            border-color: #2196f3;
+        }
+
+        button.primary:hover {
+            background: #1976d2;
+        }
+
+        select {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: 1px solid #333;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .canvas-container {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #0a0a0a;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 1.5rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            color: #2196f3;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .info {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+        }
+
+        .info h3 {
+            color: #2196f3;
+            margin-bottom: 1rem;
+        }
+
+        .info p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to URI-ISE</a>
+        
+        <div class="header">
+            <h1>🗼 Tower of Hanoi - Interactive Solver</h1>
+            <p class="subtitle">Visualize the optimal recursive solution</p>
+        </div>
+
+        <div class="controls">
+            <label>
+                Disks:
+                <select id="diskCount">
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </label>
+            <button class="primary" onclick="solveTower()">Solve</button>
+            <button onclick="resetTower()">Reset</button>
+            <button onclick="stepForward()">Step Forward</button>
+            <button onclick="stepBackward()">Step Backward</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-label">Total Moves</div>
+                <div class="stat-value" id="totalMoves">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Current Move</div>
+                <div class="stat-value" id="currentMove">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Optimal Moves</div>
+                <div class="stat-value" id="optimalMoves">7</div>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="towerCanvas" width="800" height="400"></canvas>
+        </div>
+
+        <div class="info">
+            <h3>About the Tower of Hanoi</h3>
+            <p>The Tower of Hanoi is a mathematical puzzle consisting of three rods and a number of disks of different sizes which can slide onto any rod.</p>
+            <p><strong>Rules:</strong></p>
+            <ul style="margin-left: 1.5rem; color: #aaa;">
+                <li>Only one disk can be moved at a time</li>
+                <li>Each move consists of taking the upper disk from one stack and placing it on top of another stack</li>
+                <li>No disk may be placed on top of a smaller disk</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>Optimal Solution:</strong> The minimum number of moves required is 2<sup>n</sup> - 1, where n is the number of disks.</p>
+            <p style="margin-top: 1rem;">View the full Python implementation with advanced algorithms at <a href="https://github.com/URI-ISE/Hanoi-Algorithms" style="color: #2196f3;">GitHub</a>.</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('towerCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let towers = [[], [], []];
+        let moves = [];
+        let currentMoveIndex = 0;
+        let numDisks = 3;
+
+        const diskColors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4'];
+
+        function initializeTower() {
+            numDisks = parseInt(document.getElementById('diskCount').value);
+            towers = [[], [], []];
+            
+            for (let i = numDisks; i >= 1; i--) {
+                towers[0].push(i);
+            }
+            
+            moves = [];
+            currentMoveIndex = 0;
+            
+            document.getElementById('totalMoves').textContent = '0';
+            document.getElementById('currentMove').textContent = '0';
+            document.getElementById('optimalMoves').textContent = Math.pow(2, numDisks) - 1;
+            
+            drawTowers();
+        }
+
+        function drawTowers() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const baseY = 350;
+            const rodPositions = [200, 400, 600];
+            const rodWidth = 10;
+            const rodHeight = 200;
+            const baseWidth = 150;
+            const baseHeight = 10;
+            
+            for (let i = 0; i < 3; i++) {
+                const x = rodPositions[i];
+                
+                ctx.fillStyle = '#333';
+                ctx.fillRect(x - rodWidth / 2, baseY - rodHeight, rodWidth, rodHeight);
+                ctx.fillRect(x - baseWidth / 2, baseY, baseWidth, baseHeight);
+                
+                ctx.fillStyle = '#666';
+                ctx.font = '16px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(`Tower ${String.fromCharCode(65 + i)}`, x, baseY + 30);
+            }
+            
+            for (let towerIndex = 0; towerIndex < 3; towerIndex++) {
+                const tower = towers[towerIndex];
+                const x = rodPositions[towerIndex];
+                
+                for (let diskIndex = 0; diskIndex < tower.length; diskIndex++) {
+                    const diskSize = tower[diskIndex];
+                    const diskWidth = 30 + diskSize * 15;
+                    const diskHeight = 20;
+                    const y = baseY - (diskIndex + 1) * diskHeight;
+                    
+                    ctx.fillStyle = diskColors[diskSize - 1];
+                    ctx.fillRect(x - diskWidth / 2, y, diskWidth, diskHeight);
+                    
+                    ctx.fillStyle = '#fff';
+                    ctx.font = 'bold 12px sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(diskSize.toString(), x, y + 14);
+                }
+            }
+        }
+
+        function solveTowerRecursive(n, source, target, auxiliary, movesList) {
+            if (n === 1) {
+                movesList.push({from: source, to: target, disk: towers[source][towers[source].length - 1]});
+                return;
+            }
+            
+            solveTowerRecursive(n - 1, source, auxiliary, target, movesList);
+            movesList.push({from: source, to: target, disk: towers[source][towers[source].length - 1]});
+            solveTowerRecursive(n - 1, auxiliary, target, source, movesList);
+        }
+
+        function solveTower() {
+            initializeTower();
+            moves = [];
+            
+            solveTowerRecursive(numDisks, 0, 2, 1, moves);
+            
+            document.getElementById('totalMoves').textContent = moves.length;
+            currentMoveIndex = 0;
+            
+            animateSolution();
+        }
+
+        function animateSolution() {
+            if (currentMoveIndex >= moves.length) return;
+            
+            const move = moves[currentMoveIndex];
+            const disk = towers[move.from].pop();
+            towers[move.to].push(disk);
+            
+            currentMoveIndex++;
+            document.getElementById('currentMove').textContent = currentMoveIndex;
+            
+            drawTowers();
+            
+            setTimeout(animateSolution, 500);
+        }
+
+        function stepForward() {
+            if (currentMoveIndex >= moves.length) return;
+            
+            const move = moves[currentMoveIndex];
+            const disk = towers[move.from].pop();
+            towers[move.to].push(disk);
+            
+            currentMoveIndex++;
+            document.getElementById('currentMove').textContent = currentMoveIndex;
+            drawTowers();
+        }
+
+        function stepBackward() {
+            if (currentMoveIndex <= 0) return;
+            
+            currentMoveIndex--;
+            const move = moves[currentMoveIndex];
+            const disk = towers[move.to].pop();
+            towers[move.from].push(disk);
+            
+            document.getElementById('currentMove').textContent = currentMoveIndex;
+            drawTowers();
+        }
+
+        function resetTower() {
+            initializeTower();
+        }
+
+        initializeTower();
+    </script>
+</body>
+</html>

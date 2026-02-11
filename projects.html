@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-text-size="md">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>URI ISE | Research</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#002147" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <a href="index.html">URI Industrial & Systems Engineering</a>
+        <span>Cyber-Physical Systems | Industrial Resilience</span>
+      </div>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="roster.html">People</a></li>
+          <li><a aria-current="page" href="projects.html">Research</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-header section-compact">
+      <div class="container">
+        <h1>Research Projects</h1>
+        <p class="tagline">Live testbeds, applied software, and forward-leaning research initiatives.</p>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="container">
+        <div class="projects-tabs" role="tablist" aria-label="Research focus">
+          <button class="active" type="button" role="tab" aria-selected="true">All Projects</button>
+          <button type="button" role="tab" aria-selected="false">Digital Twins</button>
+          <button type="button" role="tab" aria-selected="false">Resilient C2</button>
+        </div>
+        <div class="card-grid">
+          <article class="card project-card">
+            <span>Applied Systems</span>
+            <h3>Tower of Hanoi Solver</h3>
+            <p>Interactive solver and algorithmic visualization for production reasoning.</p>
+            <a class="button primary" href="/hanoi/">Open Project</a>
+          </article>
+          <article class="card project-card">
+            <span>Human-Centered</span>
+            <h3>RSVP Speed Reader</h3>
+            <p>Rapid serial visual presentation research tool for cognitive workflows.</p>
+            <a class="button primary" href="/rsvp-reading/">Open Project</a>
+          </article>
+          <article class="card project-card">
+            <span>Optimization</span>
+            <h3>Intelligent Manufacturing Optimization</h3>
+            <p>Predictive scheduling and constraint-aware orchestration for smart factories.</p>
+            <a class="button secondary" href="contact.html">Request Brief</a>
+          </article>
+          <article class="card project-card">
+            <span>Cyber-Physical</span>
+            <h3>Resilient Cyber-Physical Grids</h3>
+            <p>Edge-first resiliency for energy, logistics, and mission-critical operations.</p>
+            <a class="button secondary" href="contact.html">Request Brief</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
+      <p><a href="mailto:ise-group@uri.edu">ise-group@uri.edu</a></p>
+      <div class="footer-controls" role="region" aria-label="Display controls">
+        <div>
+          <button type="button" data-text-toggle aria-expanded="false">Text Size</button>
+          <div class="text-size-panel" data-text-panel data-open="false">
+            <input type="range" min="1" max="5" step="1" value="3" data-text-range aria-label="Text size" />
+            <div class="text-size-scale">
+              <span>XS</span>
+              <span>SM</span>
+              <span>MD</span>
+              <span>LG</span>
+              <span>XL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
+  </script>
+</body>
+</html>

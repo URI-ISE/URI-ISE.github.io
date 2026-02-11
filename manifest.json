@@ -1,0 +1,21 @@
+{
+  "name": "URI Industrial & Systems Engineering",
+  "short_name": "URI ISE",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#002147",
+  "theme_color": "#002147",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

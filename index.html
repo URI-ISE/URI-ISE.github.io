@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-text-size="md">
+<html lang="en" data-text-size="md">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>URI Industrial & Systems Engineering</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#002147" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("uri-ise-theme") || "system";
+        var dark = t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme:dark)").matches);
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      })();
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -15,13 +22,14 @@
         <div class="container nav">
             <div class="brand">
                 <a href="index.html">URI Industrial & Systems Engineering</a>
-                <span>Cyber-Physical Systems | Industrial Resilience</span>
+                <span>Optimization · Machine Learning · Smart Manufacturing</span>
             </div>
             <nav aria-label="Primary">
                 <ul class="nav-links">
                     <li><a aria-current="page" href="index.html">Home</a></li>
-                    <li><a href="roster.html">People</a></li>
+                    <li><a href="roster.html">Roster</a></li>
                     <li><a href="projects.html">Research</a></li>
+                    <li><a href="industry4-0.html">Industry 4.0</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -32,11 +40,12 @@
         <section class="hero">
             <canvas data-network-canvas aria-hidden="true"></canvas>
             <div class="container hero-content">
-                <p class="tagline">Intelligent Manufacturing & Cyber-Physical Resilience</p>
+                <p class="tagline">Optimization · Machine Learning · Smart Manufacturing</p>
                 <h1>URI Industrial & Systems Engineering</h1>
                 <p>
-                    The URI ISE Group advances supply chain intelligence, digital twin validation,
-                    and resilient cyber-physical systems for industry, defense, and the public sector.
+                    The URI ISE Group develops optimization algorithms, machine-learning models, digital-twin
+                    simulations, and data-driven pipelines that advance manufacturing, logistics, and industrial
+                    systems for academic, industry, and public-sector partners.
                 </p>
                 <div class="hero-actions">
                     <a class="button primary" href="projects.html">Explore Research</a>
@@ -50,22 +59,25 @@
                 <div class="section-header">
                     <h2>Mission</h2>
                     <p>
-                        Engineering outcomes that merge academic rigor with operational resilience across
-                        manufacturing, logistics, and cyber-physical infrastructure.
+                        Applying optimization, machine learning, and systems engineering to advance
+                        manufacturing, logistics, and industrial infrastructure.
                     </p>
+                </div>
+                <div class="page-header-media" style="margin-bottom:1.5rem;">
+                    <img src="assets/photos/uri-testbed.jpeg" alt="Top-down view of the URI ISE manufacturing testbed" class="page-header-img" loading="lazy" />
                 </div>
                 <div class="card-grid">
                     <article class="card">
-                        <h3>Industrial Intelligence</h3>
-                        <p>From production lines to multi-echelon logistics, we optimize decision flow.</p>
+                        <h3>Optimization &amp; Scheduling</h3>
+                        <p>From production scheduling to supply-chain networks, we develop algorithms that improve throughput and reduce cost.</p>
                     </article>
                     <article class="card">
-                        <h3>Cyber-Physical Resilience</h3>
-                        <p>We secure, test, and validate critical systems operating at the edge.</p>
+                        <h3>Machine Learning &amp; Data</h3>
+                        <p>Genetic algorithms, computer vision, and predictive models for manufacturing process control and quality assurance.</p>
                     </article>
                     <article class="card">
-                        <h3>Applied Innovation</h3>
-                        <p>We co-design deployable prototypes with academic and industry partners.</p>
+                        <h3>Digital Twins &amp; Simulation</h3>
+                        <p>High-fidelity simulation environments for testing, validation, and chaos engineering of industrial systems.</p>
                     </article>
                 </div>
             </div>
@@ -75,81 +87,68 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Research Areas</h2>
-                    <p>Integrated research tracks that connect AI, digital twins, and resilient command systems.</p>
+                    <p>Six integrated threads spanning algorithms, hardware, and data infrastructure.</p>
                 </div>
-                <div class="research-rows">
-                    <article class="research-row">
-                        <div class="research-row-label">AI &amp; Scheduling</div>
-                        <div class="research-row-body">
-                            <h3>Intelligent Production Optimization</h3>
-                            <p>We develop machine-learning models for real-time production scheduling, MES integration, and multi-objective optimization across discrete and continuous manufacturing lines. Our algorithms reduce cycle time and energy consumption while maintaining throughput targets.</p>
-                            <ul>
-                                <li>Deep reinforcement learning for job-shop scheduling</li>
-                                <li>Predictive maintenance signal fusion</li>
-                                <li>Multi-echelon inventory optimization</li>
-                            </ul>
-                        </div>
+                <div class="card-grid card-grid-3x2">
+                    <article class="card icon-card">
+                        <span class="icon-card-icon" aria-hidden="true">&#x1F50D;</span>
+                        <h3>Digital Twins</h3>
+                        <p>High-fidelity simulation environments for testing, validation, and chaos engineering of industrial systems.</p>
                     </article>
-                    <article class="research-row">
-                        <div class="research-row-label">Digital Twins</div>
-                        <div class="research-row-body">
-                            <h3>Simulation, Validation &amp; Chaos Engineering</h3>
-                            <p>High-fidelity digital twins built on ROS 2 and Unity enable us to validate control logic, inject faults via chaos engineering, and stress-test cyber-physical systems before deployment. We bridge the sim-to-real gap for robotic workcells and logistics hubs.</p>
-                            <ul>
-                                <li>ROS 2 / Gazebo hardware-in-the-loop testbeds</li>
-                                <li>Unity-based 3-D visualization dashboards</li>
-                                <li>Automated fault-injection and recovery scoring</li>
-                            </ul>
-                        </div>
+                    <article class="card icon-card">
+                        <span class="icon-card-icon" aria-hidden="true">&#x2699;&#xFE0F;</span>
+                        <h3>Smart Mfg &amp; CNC</h3>
+                        <p>GCode interception, sensor-rich machining, and custom tooling fabrication on in-house equipment.</p>
                     </article>
-                    <article class="research-row">
-                        <div class="research-row-label">Resilient C2</div>
-                        <div class="research-row-body">
-                            <h3>Edge-First Command &amp; Control</h3>
-                            <p>Our resilient command-and-control frameworks operate in degraded, denied, and intermittent network environments. We combine mobile ad-hoc networking (MANET), zero-knowledge proofs, and edge inference to maintain situational awareness when cloud connectivity is lost.</p>
-                            <ul>
-                                <li>MANET routing under contested RF spectrum</li>
-                                <li>Zero-knowledge proof identity verification</li>
-                                <li>Federated learning across tactical edge nodes</li>
-                            </ul>
-                        </div>
+                    <article class="card icon-card">
+                        <span class="icon-card-icon" aria-hidden="true">&#x1F4C8;</span>
+                        <h3>Optimization</h3>
+                        <p>Production scheduling, multi-agent coordination, and genetic ML algorithms for process control.</p>
                     </article>
-                    <article class="research-row">
-                        <div class="research-row-label">Supply Chain</div>
-                        <div class="research-row-body">
-                            <h3>End-to-End Supply Network Intelligence</h3>
-                            <p>We model, simulate, and optimize global supply networks under disruption. From port congestion to semiconductor shortages, our agent-based and optimization models help decision-makers allocate resources, reroute shipments, and quantify risk in real time.</p>
-                            <ul>
-                                <li>Agent-based disruption propagation modeling</li>
-                                <li>Stochastic network flow optimization</li>
-                                <li>Blockchain-enabled provenance tracking</li>
-                            </ul>
-                        </div>
+                    <article class="card icon-card">
+                        <span class="icon-card-icon" aria-hidden="true">&#x1F441;</span>
+                        <h3>Vision &amp; QC</h3>
+                        <p>Computer vision for real-time defect detection, dimensional measurement, and robotic pick-and-place.</p>
                     </article>
-                    <article class="research-row">
-                        <div class="research-row-label">Human Factors</div>
-                        <div class="research-row-body">
-                            <h3>Cognitive Load &amp; Operator Performance</h3>
-                            <p>We study how operators interact with complex automated systems—measuring cognitive load, decision latency, and trust calibration. Our eye-tracking and physiological sensing experiments inform interface design for manufacturing, defense, and healthcare settings.</p>
-                            <ul>
-                                <li>Eye-tracking &amp; EEG workload assessment</li>
-                                <li>Adaptive automation level switching</li>
-                                <li>AR/VR-assisted assembly guidance</li>
-                            </ul>
-                        </div>
+                    <article class="card icon-card">
+                        <span class="icon-card-icon" aria-hidden="true">&#x1F4E1;</span>
+                        <h3>Data &amp; IIoT</h3>
+                        <p>End-to-end sensor data pipelines, SCADA integration, and real-time operational dashboards.</p>
                     </article>
-                    <article class="research-row">
-                        <div class="research-row-label">Cybersecurity</div>
-                        <div class="research-row-body">
-                            <h3>OT/IT Convergence &amp; Threat Modeling</h3>
-                            <p>As operational technology (OT) networks converge with enterprise IT, attack surfaces expand. We develop intrusion-detection systems tailored for industrial protocols (Modbus, OPC-UA) and perform red-team exercises on SCADA and PLC environments.</p>
-                            <ul>
-                                <li>ICS anomaly detection via network traffic analysis</li>
-                                <li>PLC firmware integrity verification</li>
-                                <li>NIST CSF and MITRE ATT&amp;CK for ICS mapping</li>
-                            </ul>
-                        </div>
+                    <article class="card icon-card">
+                        <span class="icon-card-icon" aria-hidden="true">&#x1F6E1;&#xFE0F;</span>
+                        <h3>Cyber-Physical</h3>
+                        <p>Resilient edge architectures, testbed orchestration, and secure operation under degraded connectivity.</p>
                     </article>
+                </div>
+                <div class="section-cta">
+                    <a class="button secondary" href="projects.html">View All Research &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-compact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Graduate Certificate in Industry 4.0</h2>
+                    <p>A 12-credit, fully online credential for working professionals.</p>
+                </div>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>12 Credits · 4 Courses</h3>
+                        <p>A focused, stackable credential covering IIoT, machine learning, MES, and special projects.</p>
+                    </article>
+                    <article class="card">
+                        <h3>100 % Online</h3>
+                        <p>Complete the certificate entirely online — designed around the schedules of working professionals.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Career-Ready Skills</h3>
+                        <p>Industry-aligned knowledge in smart manufacturing, data analytics, and cyber-physical systems.</p>
+                    </article>
+                </div>
+                <div class="section-cta">
+                    <a class="button primary" href="industry4-0.html#certificate">Learn More &rarr;</a>
                 </div>
             </div>
         </section>
@@ -158,8 +157,10 @@
     <footer>
         <div class="container footer-grid">
             <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
-            <p><a href="mailto:ise-group@uri.edu">ise-group@uri.edu</a></p>
             <div class="footer-controls" role="region" aria-label="Display controls">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+                    <span data-theme-icon aria-hidden="true">◐</span> <span data-theme-label>Auto</span>
+                </button>
                 <div>
                     <button type="button" data-text-toggle aria-expanded="false">Text Size</button>
                     <div class="text-size-panel" data-text-panel data-open="false">
@@ -177,7 +178,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="assets/js/main.js"></script>
     <script>
         if ("serviceWorker" in navigator) {
             navigator.serviceWorker.register("/sw.js");

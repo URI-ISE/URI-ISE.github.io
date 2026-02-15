@@ -1,12 +1,13 @@
-const CACHE_NAME = "uri-ise-static-v1";
+const CACHE_NAME = "uri-ise-static-v2";
 const PRECACHE = [
   "./",
   "./index.html",
   "./roster.html",
   "./projects.html",
   "./contact.html",
-  "./css/style.css",
-  "./js/main.js"
+  "./industry4-0.html",
+  "./assets/css/style.css",
+  "./assets/js/main.js"
 ];
 
 self.addEventListener("install", (event) => {

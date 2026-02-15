@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-text-size="md">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>URI ISE | Industry 4.0</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#002147" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("uri-ise-theme") || "system";
+      var dark = t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme:dark)").matches);
+      document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <a href="index.html">URI Industrial &amp; Systems Engineering</a>
+        <span>Optimization · Machine Learning · Smart Manufacturing</span>
+      </div>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="projects.html">Research</a></li>
+          <li><a aria-current="page" href="industry4-0.html">Industry 4.0</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Hero ===== -->
+    <section class="page-header section-compact">
+      <div class="container">
+        <p class="tagline">The Fourth Industrial Revolution</p>
+        <h1>Industry 4.0</h1>
+        <div class="intro-with-image">
+          <div>
+            <p>
+              Industry 4.0 is the integration of advanced digital technologies — the Internet of Things (IoT),
+              artificial intelligence, machine learning, big data analytics, robotics, and manufacturing process
+              control — into traditional industrial processes. These technologies enable smart, interconnected
+              factories and production systems that communicate, analyze, and make data-driven decisions
+              autonomously, driving greater efficiency, productivity, and competitiveness in the global market.
+            </p>
+          </div>
+          <img src="assets/photos/uri-niryorobot.jpeg" alt="Niryo Ned2 robot in the URI testbed" class="intro-image" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== How We Connect ===== -->
+    <section class="section section-compact">
+      <div class="container">
+        <div class="section-header">
+          <h2>How Our Lab Connects</h2>
+          <p>Industry 4.0 isn't a single project — it's the thread that runs through everything we do.</p>
+        </div>
+
+        <div class="card-grid card-grid-3x2">
+          <article class="card icon-card">
+            <span class="icon-card-icon" aria-hidden="true">&#x1F50D;</span>
+            <h3>Digital Twins</h3>
+            <p>ROS 2 / Unity simulation environments for fault injection, validation, and chaos engineering.</p>
+          </article>
+          <article class="card icon-card">
+            <span class="icon-card-icon" aria-hidden="true">&#x2699;&#xFE0F;</span>
+            <h3>Smart Mfg &amp; CNC</h3>
+            <p>GCode interception pipelines, sensor-rich machine monitoring, and rapid tooling iteration.</p>
+          </article>
+          <article class="card icon-card">
+            <span class="icon-card-icon" aria-hidden="true">&#x1F4C8;</span>
+            <h3>Optimization</h3>
+            <p>Deep RL scheduling, genetic ML algorithms, and multi-agent coordination in flexible workcells.</p>
+          </article>
+          <article class="card icon-card">
+            <span class="icon-card-icon" aria-hidden="true">&#x1F441;</span>
+            <h3>Vision &amp; QC</h3>
+            <p>CNN defect detection, camera-guided robotics, and dimensional tolerance verification.</p>
+          </article>
+          <article class="card icon-card">
+            <span class="icon-card-icon" aria-hidden="true">&#x1F4E1;</span>
+            <h3>Data &amp; IIoT</h3>
+            <p>End-to-end data pipelines from PLCs and conveyors to real-time dashboards and alerts.</p>
+          </article>
+          <article class="card icon-card">
+            <span class="icon-card-icon" aria-hidden="true">&#x1F6E1;&#xFE0F;</span>
+            <h3>Cyber-Physical</h3>
+            <p>Edge inference, MANET routing, and automated testbed orchestration for resilient systems.</p>
+          </article>
+        </div>
+        <div class="section-cta">
+          <a class="button secondary" href="projects.html">Explore Our Research &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Certificate Program ===== -->
+    <section class="section section-compact" id="certificate">
+      <div class="container">
+        <div class="section-header">
+          <h2>Graduate Certificate in Industry 4.0</h2>
+          <p>Build the skills to lead in the age of smart manufacturing and digital transformation.</p>
+        </div>
+
+        <div class="page-header-media" style="margin-bottom:1.5rem;">
+          <img src="assets/photos/uri-testbed.jpeg" alt="Top-down view of the URI ISE manufacturing testbed" class="page-header-img" loading="lazy" />
+        </div>
+
+        <div class="card-grid" style="margin-bottom:2rem;">
+          <article class="card">
+            <h3>12 Credits</h3>
+            <p>Four graduate-level courses forming a focused, stackable credential.</p>
+          </article>
+          <article class="card">
+            <h3>Fully Online Option</h3>
+            <p>Complete the certificate entirely online — designed for working professionals.</p>
+          </article>
+          <article class="card">
+            <h3>Career-Ready</h3>
+            <p>Practical tools and industry-aligned knowledge you can apply immediately.</p>
+          </article>
+        </div>
+
+        <div class="research-rows">
+          <!-- Who It's For -->
+          <article class="research-row">
+            <div class="research-row-label">Who It's For</div>
+            <div class="research-row-body">
+              <h3>Designed for Professionals Across Industries</h3>
+              <ul>
+                <li><strong>Engineers</strong> — Enhance understanding of advanced manufacturing, robotics, and automation.</li>
+                <li><strong>Data Analysts &amp; Data Scientists</strong> — Leverage I4.0 concepts for data-driven operational optimization.</li>
+                <li><strong>Supply Chain &amp; Logistics Managers</strong> — Integrate IoT and automation into supply chain systems.</li>
+                <li><strong>IT Professionals</strong> — Support digital transformation and address cybersecurity in OT environments.</li>
+                <li><strong>Project &amp; Product Managers</strong> — Lead technology-driven product development and project management.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- What You'll Learn -->
+          <article class="research-row">
+            <div class="research-row-label">Learning</div>
+            <div class="research-row-body">
+              <h3>What You'll Learn</h3>
+              <p>Gain hands-on knowledge and insight into the technologies reshaping modern industry:</p>
+              <ul>
+                <li><strong>Systems Integration &amp; Control</strong> — Bridge the gap between IT and OT systems in manufacturing environments.</li>
+                <li><strong>Cyber-Physical Systems</strong> — Integrate computation, networking, and physical processes in modern production.</li>
+                <li><strong>Industrial Internet of Things (IIoT)</strong> — Harness sensor data and connected devices to optimize performance.</li>
+                <li><strong>Smart Manufacturing &amp; Robotics</strong> — Learn the role of automation, AI, and robotics in industrial systems.</li>
+                <li><strong>Data Analytics for Industry</strong> — Use real-time data to drive decisions and continuous improvement.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Curriculum -->
+          <article class="research-row">
+            <div class="research-row-label">Curriculum</div>
+            <div class="research-row-body">
+              <h3>Four Courses. One Powerful Credential.</h3>
+              <p>
+                Topics include cyber-physical systems, IIoT, data analytics and visualization, machine learning
+                and AI in industry, smart manufacturing processes, sensors and SCADA systems, and digital supply
+                chain management. Students also work through real-world case studies and industry projects.
+              </p>
+              <ul>
+                <li><strong>ISE 571</strong> — Industry 4.0 Fundamentals</li>
+                <li><strong>ISE 572</strong> — Machine Learning for Industry 4.0</li>
+                <li><strong>ISE 573</strong> — Manufacturing Execution Systems</li>
+                <li><strong>ISE 575</strong> — Industry 4.0 Special Projects</li>
+              </ul>
+              <p>
+                Courses may be taken individually or as part of the certificate sequence.
+                See the <a href="https://web.uri.edu/catalog/" target="_blank" rel="noopener">University Academic Catalog</a> for prerequisites and enrollment details.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <a class="button primary" href="contact.html">Get in Touch</a>
+          <a class="button secondary" href="https://web.uri.edu/engineering/" target="_blank" rel="noopener" style="margin-left:0.75rem;">URI College of Engineering</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <p>&copy; 2026 University of Rhode Island Industrial &amp; Systems Engineering Group. All rights reserved.</p>
+      <div class="footer-controls" role="region" aria-label="Display controls">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+          <span data-theme-icon aria-hidden="true">◐</span> <span data-theme-label>Auto</span>
+        </button>
+        <div>
+          <button type="button" data-text-toggle aria-expanded="false">Text Size</button>
+          <div class="text-size-panel" data-text-panel data-open="false">
+            <input type="range" min="1" max="5" step="1" value="3" data-text-range aria-label="Text size" />
+            <div class="text-size-scale">
+              <span>XS</span>
+              <span>SM</span>
+              <span>MD</span>
+              <span>LG</span>
+              <span>XL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
+  </script>
+</body>
+</html>

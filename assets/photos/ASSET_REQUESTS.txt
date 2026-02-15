@@ -1,0 +1,33 @@
+ASSET REQUESTS
+==============
+Images needed for the URI ISE website. Dimensions target 2x display density.
+
+1. Industry 4.0 hero/banner image
+   - Context: Top of industry4-0.html; wide banner showing smart manufacturing environment.
+   - Ideal content: Robotic arms, conveyor belt, or digital overlay on shop floor.
+   - Dimensions: 1600×600 px minimum.
+
+2. Capstone Room (FCAE 180A) photo
+   - Context: Lab Infrastructure section on industry4-0.html.
+   - Ideal content: Wide shot of the testbed — Niryo Ned2 robots, xArms, conveyors, AVRS system.
+   - Dimensions: 800×500 px.
+
+3. Vehicular Vision & Tracking Lab (KIRK) photo
+   - Context: Lab Infrastructure section on industry4-0.html.
+   - Ideal content: Vision equipment, laser cutter, 3-D printers.
+   - Dimensions: 800×500 px.
+
+4. CNC machine close-up
+   - Context: Smart Mfg & CNC research row on industry4-0.html.
+   - Ideal content: CNC spindle with sensors attached, machining in progress.
+   - Dimensions: 600×400 px.
+
+5. Niryo Ned2 or xArm in action
+   - Context: Research section or certificate marketing.
+   - Ideal content: Collaborative robot performing pick-and-place or assembly task.
+   - Dimensions: 600×400 px.
+
+6. Student working at testbed
+   - Context: Certificate section or general promotional.
+   - Ideal content: Graduate or capstone student interacting with lab equipment.
+   - Dimensions: 800×500 px.

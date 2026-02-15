@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-text-size="md">
+<html lang="en" data-text-size="md">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>URI ISE | Contact</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#002147" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("uri-ise-theme") || "system";
+      var dark = t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme:dark)").matches);
+      document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -15,13 +22,14 @@
     <div class="container nav">
       <div class="brand">
         <a href="index.html">URI Industrial & Systems Engineering</a>
-        <span>Cyber-Physical Systems | Industrial Resilience</span>
+        <span>Optimization · Machine Learning · Smart Manufacturing</span>
       </div>
       <nav aria-label="Primary">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="roster.html">People</a></li>
+          <li><a href="roster.html">Roster</a></li>
           <li><a href="projects.html">Research</a></li>
+          <li><a href="industry4-0.html">Industry 4.0</a></li>
           <li><a aria-current="page" href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -32,7 +40,7 @@
     <section class="page-header section-compact">
       <div class="container">
         <h1>Contact</h1>
-        <p class="tagline">Connect with the URI ISE Group for research collaboration.</p>
+        <p class="tagline">Reach out for research collaboration, partnership, or certificate inquiries.</p>
       </div>
     </section>
 
@@ -40,11 +48,12 @@
       <div class="container">
         <div class="contact-card">
           <div>
-            <h2>URI Industrial & Systems Engineering</h2>
-            <p>Office: Tyler Hall, Kingston, RI</p>
-            <p>Email: <a href="mailto:ise-group@uri.edu">ise-group@uri.edu</a></p>
+            <h2>Get in Touch</h2>
+            <p>Dr. Manbir Sodhi — Lab Director</p>
+            <p>Department of Mechanical, Industrial &amp; Systems Engineering</p>
+            <p>University of Rhode Island · Kingston, RI 02881</p>
           </div>
-          <form action="mailto:ise-group@uri.edu" method="post" enctype="text/plain">
+          <form>
             <label>
               Name
               <input type="text" name="name" placeholder="Full name" required />
@@ -54,8 +63,15 @@
               <input type="email" name="email" placeholder="name@domain.edu" required />
             </label>
             <label>
-              Message
-              <textarea name="message" placeholder="How can we collaborate?" required></textarea>
+              <select name="subject">
+                <option value="general">General Inquiry</option>
+                <option value="certificate">Graduate Certificate</option>
+                <option value="research">Research Collaboration</option>
+                <option value="industry">Industry Partnership</option>
+              </select>
+            </label>
+            <label>
+              <textarea name="message" placeholder="How can we help?" required></textarea>
             </label>
             <button class="button primary" type="submit">Send Message</button>
           </form>
@@ -66,27 +82,39 @@
     <section class="section section-compact">
       <div class="container">
         <div class="section-header">
-          <h2>Our Lab Spaces</h2>
+          <h2>Lab Spaces</h2>
           <p>Where the work happens — research environments across the URI Kingston campus.</p>
         </div>
         <div class="lab-rooms">
           <article class="lab-room">
-            <h3>Cyber-Physical Systems Lab</h3>
-            <p class="lab-meta">Tyler Hall, Room 210 · Kingston, RI 02881</p>
-            <p>Our primary research space for digital twin development, ROS 2 testbeds, and hardware-in-the-loop simulation rigs. Equipped with industrial PLCs, robotic arms, and edge compute clusters.</p>
-            <a class="lab-link" href="https://maps.google.com/?q=Tyler+Hall,+University+of+Rhode+Island,+Kingston,+RI" target="_blank" rel="noopener">&#x1F4CD; View on Google Maps</a>
+            <img src="assets/photos/fcae-uri.png" alt="Fascitelli Center for Advanced Engineering exterior" class="lab-room-img" loading="lazy" />
+            <h3>Capstone Room</h3>
+            <p class="lab-meta">FCAE 180A · Kingston, RI 02881</p>
+            <p>
+              Primary manufacturing testbed featuring Niryo Ned2 robots, xArm collaborative robots,
+              conveyor belts, an AVRS rotating inventory system, Alvix robots, CNC machines with
+              integrated sensors, and laser cutters. Capstone seniors and lab members work here on
+              hands-on Industry 4.0 projects.
+            </p>
           </article>
           <article class="lab-room">
-            <h3>Manufacturing Intelligence Lab</h3>
-            <p class="lab-meta">Wales Hall, Room 105 · Kingston, RI 02881</p>
-            <p>Dedicated to intelligent scheduling, sensor fusion, and predictive-maintenance research. Houses a small-scale flexible manufacturing cell, vision systems, and GPU workstations for ML model training.</p>
-            <a class="lab-link" href="https://maps.google.com/?q=Wales+Hall,+University+of+Rhode+Island,+Kingston,+RI" target="_blank" rel="noopener">&#x1F4CD; View on Google Maps</a>
+            <img src="assets/photos/kirk-uri.png" alt="Kirk Applied Engineering Laboratory" class="lab-room-img" loading="lazy" />
+            <h3>Vehicular Vision &amp; Tracking Lab</h3>
+            <p class="lab-meta">KIRK Resources · Kingston, RI 02881</p>
+            <p>
+              Houses vision-focused research alongside higher-powered laser cutting and 3-D printing
+              resources used across multiple lab projects.
+            </p>
           </article>
           <article class="lab-room">
-            <h3>Human Factors & Simulation Suite</h3>
-            <p class="lab-meta">Fascitelli Center, Room 312 · Kingston, RI 02881</p>
-            <p>Eye-tracking stations, EEG workload capture, and VR headsets support our human-factors research. Used for operator-performance studies, AR-assisted assembly experiments, and interface usability testing.</p>
-            <a class="lab-link" href="https://maps.google.com/?q=Fascitelli+Center,+University+of+Rhode+Island,+Kingston,+RI" target="_blank" rel="noopener">&#x1F4CD; View on Google Maps</a>
+            <h3>Graduate Lounge</h3>
+            <p class="lab-meta">FCAE, Floor 2 · Kingston, RI 02881</p>
+            <p>Collaborative workspace for graduate students — writing, analysis, and project coordination.</p>
+          </article>
+          <article class="lab-room">
+            <h3>Lab Support Room</h3>
+            <p class="lab-meta">FCAE · Kingston, RI 02881</p>
+            <p>Additional workspace and storage supporting ongoing testbed research and equipment maintenance.</p>
           </article>
         </div>
       </div>
@@ -96,8 +124,10 @@
   <footer>
     <div class="container footer-grid">
       <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
-      <p><a href="mailto:ise-group@uri.edu">ise-group@uri.edu</a></p>
       <div class="footer-controls" role="region" aria-label="Display controls">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+          <span data-theme-icon aria-hidden="true">◐</span> <span data-theme-label>Auto</span>
+        </button>
         <div>
           <button type="button" data-text-toggle aria-expanded="false">Text Size</button>
           <div class="text-size-panel" data-text-panel data-open="false">
@@ -115,7 +145,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");

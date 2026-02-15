@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-text-size="md">
+<html lang="en" data-text-size="md">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>URI ISE | Research</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#002147" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("uri-ise-theme") || "system";
+      var dark = t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme:dark)").matches);
+      document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -15,13 +22,14 @@
     <div class="container nav">
       <div class="brand">
         <a href="index.html">URI Industrial & Systems Engineering</a>
-        <span>Cyber-Physical Systems | Industrial Resilience</span>
+        <span>Optimization · Machine Learning · Smart Manufacturing</span>
       </div>
       <nav aria-label="Primary">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="roster.html">People</a></li>
+          <li><a href="roster.html">Roster</a></li>
           <li><a aria-current="page" href="projects.html">Research</a></li>
+          <li><a href="industry4-0.html">Industry 4.0</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -31,23 +39,116 @@
   <main id="main">
     <section class="page-header section-compact">
       <div class="container">
-        <h1>Research Projects</h1>
-        <p class="tagline">Live testbeds, applied software, and forward-leaning research initiatives.</p>
+        <h1>Research</h1>
+        <p class="tagline">Six integrated research threads — from algorithms and simulation to physical testbeds.</p>
+        <div class="page-header-media">
+          <img src="assets/photos/uri-robotgif.gif" alt="Robot and digital twin in action" class="page-header-img" loading="lazy" />
+        </div>
       </div>
     </section>
 
+    <!-- ===== Detailed Research Threads ===== -->
     <section class="section section-compact">
       <div class="container">
-        <div class="projects-tabs" role="tablist" aria-label="Research focus">
-          <button class="active" type="button" role="tab" aria-selected="true">All Projects</button>
-          <button type="button" role="tab" aria-selected="false">Digital Twins</button>
-          <button type="button" role="tab" aria-selected="false">Resilient C2</button>
+        <div class="section-header">
+          <h2>Research Threads</h2>
+          <p>Deep dives into the problems and methods that drive our lab.</p>
+        </div>
+
+        <div class="research-rows">
+          <article class="research-row">
+            <div class="research-row-label">Digital Twins</div>
+            <div class="research-row-body">
+              <h3>Simulation, Validation &amp; Chaos Engineering</h3>
+              <p>High-fidelity digital twins built on ROS 2 and Unity let us validate control logic, inject faults, and stress-test cyber-physical systems before deployment — bridging the sim-to-real gap for robotic workcells and logistics hubs.</p>
+              <ul>
+                <li>ROS 2 / Gazebo hardware-in-the-loop testbeds</li>
+                <li>Unity-based 3-D visualization dashboards</li>
+                <li>Automated fault-injection and recovery scoring</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="research-row">
+            <div class="research-row-label">Smart Mfg &amp; CNC</div>
+            <div class="research-row-body">
+              <h3>Intelligent Machining &amp; Tooling</h3>
+              <p>We develop GCode interception and validation pipelines for CNC systems and produce custom tooling on our in-house machines, closing the loop between digital design and physical production.</p>
+              <ul>
+                <li>Real-time GCode validation for CNC machining</li>
+                <li>Custom tooling fabrication and rapid iteration</li>
+                <li>Sensor-rich machine monitoring</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="research-row">
+            <div class="research-row-label">Optimization</div>
+            <div class="research-row-body">
+              <h3>Scheduling, Coordination &amp; Process Control</h3>
+              <p>From job-shop scheduling to multi-agent coordination in smart factory layouts, our algorithms minimize cycle time and energy use while meeting throughput targets.</p>
+              <ul>
+                <li>Deep reinforcement learning for production scheduling</li>
+                <li>Genetic ML algorithms for process optimization</li>
+                <li>Multi-agent coordination in flexible workcells</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="research-row">
+            <div class="research-row-label">Vision &amp; QC</div>
+            <div class="research-row-body">
+              <h3>Computer Vision for Quality Control</h3>
+              <p>We build computer vision systems that inspect parts in real time, catching defects at the point of manufacture and feeding data back into process-control loops.</p>
+              <ul>
+                <li>Defect detection via convolutional neural networks</li>
+                <li>Camera-guided robotic pick-and-place</li>
+                <li>Dimensional measurement and tolerance verification</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="research-row">
+            <div class="research-row-label">Data &amp; IIoT</div>
+            <div class="research-row-body">
+              <h3>Data Pipelines &amp; the Industrial Internet of Things</h3>
+              <p>Sensor data flows from PLCs, conveyors, and robotic arms into pipelines that clean, transform, and visualize operational metrics — providing the data layer that makes Industry 4.0 possible.</p>
+              <ul>
+                <li>End-to-end data pipeline design for manufacturing testbeds</li>
+                <li>SCADA and OPC-UA integration</li>
+                <li>Real-time dashboards and anomaly alerting</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="research-row">
+            <div class="research-row-label">Cyber-Physical</div>
+            <div class="research-row-body">
+              <h3>Resilient Cyber-Physical Systems</h3>
+              <p>Our testbed automation work ensures that cyber-physical systems remain operational under adverse conditions — validating edge-first architectures for contested and degraded environments.</p>
+              <ul>
+                <li>Automated testbed provisioning and orchestration</li>
+                <li>Edge inference under intermittent connectivity</li>
+                <li>MANET routing and zero-knowledge identity verification</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Live Projects & Tools ===== -->
+    <section class="section section-compact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Projects &amp; Tools</h2>
+          <p>Applied software built and maintained by the lab.</p>
         </div>
         <div class="card-grid">
           <article class="card project-card">
             <span>Applied Systems</span>
             <h3>Tower of Hanoi Solver</h3>
-            <p>Interactive solver and algorithmic visualization for production reasoning.</p>
+            <p>Interactive solver and algorithmic visualization for production scheduling reasoning.</p>
             <a class="button primary" href="/hanoi/">Open Project</a>
           </article>
           <article class="card project-card">
@@ -55,18 +156,6 @@
             <h3>RSVP Speed Reader</h3>
             <p>Rapid serial visual presentation research tool for cognitive workflows.</p>
             <a class="button primary" href="/rsvp-reading/">Open Project</a>
-          </article>
-          <article class="card project-card">
-            <span>Optimization</span>
-            <h3>Intelligent Manufacturing Optimization</h3>
-            <p>Predictive scheduling and constraint-aware orchestration for smart factories.</p>
-            <a class="button secondary" href="contact.html">Request Brief</a>
-          </article>
-          <article class="card project-card">
-            <span>Cyber-Physical</span>
-            <h3>Resilient Cyber-Physical Grids</h3>
-            <p>Edge-first resiliency for energy, logistics, and mission-critical operations.</p>
-            <a class="button secondary" href="contact.html">Request Brief</a>
           </article>
         </div>
       </div>
@@ -76,8 +165,10 @@
   <footer>
     <div class="container footer-grid">
       <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
-      <p><a href="mailto:ise-group@uri.edu">ise-group@uri.edu</a></p>
       <div class="footer-controls" role="region" aria-label="Display controls">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+          <span data-theme-icon aria-hidden="true">◐</span> <span data-theme-label>Auto</span>
+        </button>
         <div>
           <button type="button" data-text-toggle aria-expanded="false">Text Size</button>
           <div class="text-size-panel" data-text-panel data-open="false">
@@ -95,7 +186,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");

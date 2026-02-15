@@ -3,7 +3,9 @@ const STORAGE_KEYS = {
   textSize: "uri-ise-text-size"
 };
 
-const themeSelect = document.querySelector("[data-theme-select]");
+const themeToggle = document.querySelector("[data-theme-toggle]");
+const themeIcon = document.querySelector("[data-theme-icon]");
+const themeLabel = document.querySelector("[data-theme-label]");
 const textToggle = document.querySelector("[data-text-toggle]");
 const textRange = document.querySelector("[data-text-range]");
 const textPanel = document.querySelector("[data-text-panel]");
@@ -17,15 +19,21 @@ const sizeMap = {
   5: "xl"
 };
 
+const THEME_META = {
+  system: { icon: "\u25D0", label: "Auto" },
+  light:  { icon: "\u2600", label: "Light" },
+  dark:   { icon: "\u263E", label: "Dark" }
+};
+
 const applyTheme = (value) => {
   const storedTheme = value || localStorage.getItem(STORAGE_KEYS.theme) || "system";
   const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const theme = storedTheme === "system" ? (systemDark ? "dark" : "light") : storedTheme;
 
   root.setAttribute("data-theme", theme);
-  if (themeSelect) {
-    themeSelect.value = storedTheme;
-  }
+  const meta = THEME_META[storedTheme] || THEME_META.system;
+  if (themeIcon) themeIcon.textContent = meta.icon;
+  if (themeLabel) themeLabel.textContent = meta.label;
 };
 
 const applyTextSize = (value) => {
@@ -37,11 +45,13 @@ const applyTextSize = (value) => {
   }
 };
 
-if (themeSelect) {
-  themeSelect.addEventListener("change", (event) => {
-    const value = event.target.value;
-    localStorage.setItem(STORAGE_KEYS.theme, value);
-    applyTheme(value);
+if (themeToggle) {
+  const themeOrder = ["system", "light", "dark"];
+  themeToggle.addEventListener("click", () => {
+    const current = localStorage.getItem(STORAGE_KEYS.theme) || "system";
+    const next = themeOrder[(themeOrder.indexOf(current) + 1) % themeOrder.length];
+    localStorage.setItem(STORAGE_KEYS.theme, next);
+    applyTheme(next);
   });
 }
 

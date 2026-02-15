@@ -1,21 +1,30 @@
+/* ===== Light theme (default) ===== */
 :root {
   --color-primary: #002147;
   --color-accent-1: #75b2dd;
-  --color-neutral: #313131;
   --color-accent-2: #b39c4d;
   --color-secondary: #768948;
+  --color-neutral: #313131;
+
   --header-bg: #1a1a1a;
   --footer-bg: #002147;
-  --section-bg: #1e1e1e;
-  --section-card-bg: #2a2a2a;
+
   --bg: #eff1f4;
   --bg-elevated: #f8f9fb;
+  --section-bg: #e2e5ea;
+  --section-card-bg: #ffffff;
+
   --text: #1d242c;
   --text-muted: #4d5a6a;
-  --border: rgba(0, 33, 71, 0.18);
-  --border-accent: rgba(117, 178, 221, 0.35);
-  --shadow: 0 18px 40px rgba(0, 33, 71, 0.12);
-  --focus: 0 0 0 3px rgba(117, 178, 221, 0.35);
+
+  --border: rgba(0, 33, 71, 0.14);
+  --border-accent: rgba(117, 178, 221, 0.30);
+  --shadow: 0 4px 24px rgba(0, 33, 71, 0.08);
+  --focus: 0 0 0 3px rgba(117, 178, 221, 0.4);
+
+  --input-bg: #ffffff;
+  --input-border: rgba(0, 33, 71, 0.18);
+
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 8px;
@@ -25,27 +34,36 @@
   --line-height: 1.65;
 }
 
+/* ===== Dark theme ===== */
 [data-theme="dark"] {
-  --bg: #242424;
-  --bg-elevated: #2e2e2e;
-  --section-bg: #1a1a1a;
-  --section-card-bg: #242424;
-  --text: #f1f1f1;
-  --text-muted: #c5c8ce;
-  --border: rgba(117, 178, 221, 0.2);
-  --border-accent: rgba(117, 178, 221, 0.3);
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --bg: #121417;
+  --bg-elevated: #1a1d21;
+  --section-bg: #16181c;
+  --section-card-bg: #1e2025;
+  --text: #e1e2e5;
+  --text-muted: #8b909a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(117, 178, 221, 0.22);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --input-bg: rgba(255, 255, 255, 0.06);
+  --input-border: rgba(117, 178, 221, 0.22);
 }
 
-[data-theme="light"] {
-  --bg: #eff1f4;
-  --bg-elevated: #f8f9fb;
-  --section-bg: #1e1e1e;
-  --section-card-bg: #2a2a2a;
-  --text: #1d242c;
-  --text-muted: #4d5a6a;
-  --border: rgba(0, 33, 71, 0.18);
-  --border-accent: rgba(117, 178, 221, 0.35);
+/* System dark preference (no-JS fallback) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #121417;
+    --bg-elevated: #1a1d21;
+    --section-bg: #16181c;
+    --section-card-bg: #1e2025;
+    --text: #e1e2e5;
+    --text-muted: #8b909a;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-accent: rgba(117, 178, 221, 0.22);
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --input-bg: rgba(255, 255, 255, 0.06);
+    --input-border: rgba(117, 178, 221, 0.22);
+  }
 }
 
 [data-text-size="xs"] {
@@ -313,8 +331,12 @@ textarea {
 
 .button.secondary {
   background: transparent;
-  color: #f6fbff;
+  color: var(--text);
   border-color: var(--color-accent-2);
+}
+
+.hero .button.secondary {
+  color: #f6fbff;
 }
 
 .button:hover {
@@ -328,7 +350,7 @@ textarea {
 .section-compact {
   padding: 2.5rem 0;
   background: var(--section-bg);
-  color: #f1f1f1;
+  color: var(--text);
   border-top: 1px solid var(--border-accent);
   border-bottom: 1px solid var(--border-accent);
 }
@@ -350,12 +372,8 @@ textarea {
   color: var(--text);
 }
 
-.section-compact .section-header h2 {
-  color: #ffffff;
-}
-
 .section-compact .section-header p {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-muted);
 }
 
 .section-header p {
@@ -388,17 +406,11 @@ textarea {
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-md);
   padding: 1.1rem;
-  box-shadow: none;
-  color: #f1f1f1;
-}
-
-.section-compact .card h3,
-.section-compact .pillar h3 {
-  color: #ffffff;
+  box-shadow: var(--shadow);
 }
 
 .section-compact .card p {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-muted);
 }
 
 .section-compact .pillar span {
@@ -476,13 +488,12 @@ textarea {
 }
 
 .research-row-body h3 {
-  color: #ffffff;
   margin: 0 0 0.5rem;
   font-size: 1.05rem;
 }
 
 .research-row-body p {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-muted);
   margin: 0 0 0.6rem;
   line-height: 1.55;
 }
@@ -490,7 +501,7 @@ textarea {
 .research-row-body ul {
   margin: 0;
   padding-left: 1.2rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.65;
 }
@@ -523,23 +534,21 @@ textarea {
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-md);
   padding: 1.4rem;
-  color: #f1f1f1;
 }
 
 .lab-room h3 {
-  color: #ffffff;
   margin: 0 0 0.4rem;
   font-size: 1rem;
 }
 
 .lab-room .lab-meta {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--text-muted);
   font-size: 0.88rem;
   margin: 0 0 0.6rem;
 }
 
 .lab-room p {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-muted);
   margin: 0 0 0.7rem;
   line-height: 1.5;
 }
@@ -593,7 +602,6 @@ footer a:hover {
 
 .page-header h1 {
   font-size: clamp(2rem, 3vw, 2.6rem);
-  color: #ffffff;
 }
 
 .profile-grid {
@@ -608,7 +616,6 @@ footer a:hover {
   padding: 1.4rem;
   display: grid;
   gap: 0.75rem;
-  color: #f1f1f1;
 }
 
 .profile-card.large {
@@ -619,9 +626,18 @@ footer a:hover {
 .avatar {
   width: 72px;
   height: 72px;
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
   background: linear-gradient(135deg, rgba(117, 178, 221, 0.35), rgba(179, 156, 77, 0.35));
   border: 1px solid rgba(117, 178, 221, 0.45);
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .profile-meta {
@@ -646,7 +662,6 @@ footer a:hover {
 
 .profile-section h2 {
   font-size: 1.2rem;
-  color: #ffffff;
   border-bottom: 1px solid var(--border-accent);
   padding-bottom: 0.4rem;
 }
@@ -661,7 +676,7 @@ footer a:hover {
 .projects-tabs button {
   border: 1px solid var(--border-accent);
   background: var(--section-card-bg);
-  color: #f1f1f1;
+  color: var(--text);
   padding: 0.5rem 1rem;
   border-radius: 999px;
   cursor: pointer;
@@ -690,7 +705,6 @@ footer a:hover {
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-md);
   padding: 1.6rem;
-  color: #f1f1f1;
 }
 
 .contact-card form {
@@ -700,11 +714,11 @@ footer a:hover {
 
 .contact-card input,
 .contact-card textarea {
-  border: 1px solid var(--border-accent);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   padding: 0.6rem 0.8rem;
-  background: rgba(255, 255, 255, 0.06);
-  color: #f1f1f1;
+  background: var(--input-bg);
+  color: var(--text);
 }
 
 .contact-card textarea {
@@ -745,4 +759,122 @@ footer a:hover {
   }
 }
 
+/* Theme toggle */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--border-accent);
+  background: transparent;
+  color: #f1f1f1;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  font-family: inherit;
+  transition: background 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
 /* Override Hanoi page styles to match #002147 & #b39c4d palette when needed. */
+
+/* Icon cards — used on home and I4.0 overview grids */
+.icon-card {
+  text-align: center;
+  padding: 1.6rem 1.2rem;
+}
+
+.icon-card-icon {
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+  line-height: 1;
+}
+
+.icon-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.card-grid-3x2 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 700px) {
+  .card-grid-3x2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Section CTA — centered button row under a card grid */
+.section-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Contact select */
+.contact-card select {
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  background: var(--input-bg);
+  color: var(--text);
+  width: 100%;
+  font-size: inherit;
+}
+
+/* Lab room images */
+.lab-room-img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.8rem;
+  object-fit: cover;
+  max-height: 180px;
+}
+
+/* Intro with side image (used on I4.0 hero) */
+.intro-with-image {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.intro-image {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  max-height: 260px;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 700px) {
+  .intro-with-image {
+    grid-template-columns: 1fr;
+  }
+  .intro-image {
+    max-height: 200px;
+  }
+}
+
+/* Page header media — centered image under header text */
+.page-header-media {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.page-header-img {
+  width: 100%;
+  max-width: 720px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  max-height: 340px;
+  box-shadow: var(--shadow);
+}

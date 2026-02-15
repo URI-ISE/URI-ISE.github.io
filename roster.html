@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-text-size="md">
+<html lang="en" data-text-size="md">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>URI ISE | People</title>
+  <title>URI ISE | Roster</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#002147" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("uri-ise-theme") || "system";
+      var dark = t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme:dark)").matches);
+      document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -15,13 +22,14 @@
     <div class="container nav">
       <div class="brand">
         <a href="index.html">URI Industrial & Systems Engineering</a>
-        <span>Cyber-Physical Systems | Industrial Resilience</span>
+        <span>Optimization · Machine Learning · Smart Manufacturing</span>
       </div>
       <nav aria-label="Primary">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a aria-current="page" href="roster.html">People</a></li>
+          <li><a aria-current="page" href="roster.html">Roster</a></li>
           <li><a href="projects.html">Research</a></li>
+          <li><a href="industry4-0.html">Industry 4.0</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -31,8 +39,8 @@
   <main id="main">
     <section class="page-header section-compact">
       <div class="container">
-        <h1>People</h1>
-        <p class="tagline">A multi-level team focused on resilient cyber-physical research.</p>
+        <h1>Roster</h1>
+        <p class="tagline">A multi-level team focused on industrial systems engineering research and practical applications.</p>
       </div>
     </section>
 
@@ -41,12 +49,12 @@
         <div class="profile-section">
           <h2>Principal Advisor</h2>
           <article class="profile-card large">
-            <div class="avatar"></div>
+            <div class="avatar"><img src="assets/photos/manbir-sodhi.jpg" alt="Dr. Manbir Sodhi" /></div>
             <div class="profile-meta">
-              <strong>Dr. Taylor Morgan</strong>
+              <strong>Dr. Manbir Sodhi</strong>
               <span class="profile-role">Professor & Lab Director</span>
-              <a href="mailto:taylor.morgan@uri.edu">taylor.morgan@uri.edu</a>
-              <p>Leads resilient manufacturing systems and strategic industry partnerships.</p>
+              <a href="mailto:manbir.sodhi@uri.edu">sodhi@uri.edu</a>
+              <p>Leads industry & systems engineering and strategic industry partnerships.</p>
             </div>
           </article>
         </div>
@@ -54,12 +62,12 @@
         <div class="profile-section">
           <h2>Post-Doctoral Fellow</h2>
           <article class="profile-card">
-            <div class="avatar"></div>
+            <div class="avatar"><img src="assets/photos/romesh-prasad.jpg" alt="Dr. Romesh Prasad" /></div>
             <div class="profile-meta">
-              <strong>Dr. Priya Shah</strong>
+              <strong>Dr. Romesh Prasad</strong>
               <span class="profile-role">Post-Doctoral Fellow</span>
-              <a href="mailto:priya.shah@uri.edu">priya.shah@uri.edu</a>
-              <p>Focuses on supply chain analytics and cyber-physical risk modeling.</p>
+              <a href="mailto:romeshsatish.prasad@uri.edu">romeshsatish.prasad@uri.edu</a>
+              <p>Focuses on digital twin and machine learning applications in manufacturing.</p>
             </div>
           </article>
         </div>
@@ -68,21 +76,21 @@
           <h2>Doctoral Students</h2>
           <div class="card-grid">
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/steven-blum.jpg" alt="Steven Blum" /></div>
               <div class="profile-meta">
-                <strong>Alex Chen</strong>
+                <strong>Steven Blum</strong>
                 <span class="profile-role">PhD Candidate</span>
-                <a href="mailto:alex.chen@uri.edu">alex.chen@uri.edu</a>
-                <p>Develops scheduling AI for multi-facility production systems.</p>
+                <a href="mailto:steven.blum@uri.edu">steven.blum@uri.edu</a>
+                <p>Optimization and scheduling integration with personalized user workflows.</p>
               </div>
             </article>
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/stephen-eacuello.jpg" alt="Stephen Eacuello" /></div>
               <div class="profile-meta">
-                <strong>Marina Lopez</strong>
+                <strong>Stephen Eacuello</strong>
                 <span class="profile-role">PhD Candidate</span>
-                <a href="mailto:marina.lopez@uri.edu">marina.lopez@uri.edu</a>
-                <p>Builds digital twin pipelines for resilient manufacturing testbeds.</p>
+                <a href="mailto:seacuello@uri.edu">seacuello@uri.edu</a>
+                <p>Develops GCode interception and validation for CNC machining systems.</p>
               </div>
             </article>
           </div>
@@ -92,57 +100,48 @@
           <h2>Masters Students</h2>
           <div class="card-grid">
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/luke-pepin.jpg" alt="Luke Pepin" /></div>
               <div class="profile-meta">
-                <strong>Riley Patel</strong>
+                <strong>Luke Pepin</strong>
                 <span class="profile-role">MS Student</span>
-                <a href="mailto:riley.patel@uri.edu">riley.patel@uri.edu</a>
-                <p>Examines edge-first C2 frameworks for high-tempo logistics.</p>
+                <a href="mailto:luke.pepin@uri.edu">luke.pepin@uri.edu</a>
+                <p>Automation for resilient cyber-physical systems for testbeds.</p>
               </div>
             </article>
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/andrew-muszynski.jpg" alt="Andrew Muszynski" /></div>
               <div class="profile-meta">
-                <strong>Jordan Kim</strong>
+                <strong>Andrew Muszynski</strong>
                 <span class="profile-role">MS Student</span>
-                <a href="mailto:jordan.kim@uri.edu">jordan.kim@uri.edu</a>
+                <a href="mailto:muszynskiandrew@uri.edu">muszynskiandrew@uri.edu</a>
                 <p>Optimizes multi-agent coordination in smart factory layouts.</p>
               </div>
             </article>
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/harishjitu-saseendran.jpg" alt="Harishjitu Saseendran" /></div>
               <div class="profile-meta">
-                <strong>Sofia Nguyen</strong>
+                <strong>Harishjitu Saseendran</strong>
                 <span class="profile-role">MS Student</span>
-                <a href="mailto:sofia.nguyen@uri.edu">sofia.nguyen@uri.edu</a>
-                <p>Studies data fusion for resilient manufacturing monitoring.</p>
+                <a href="mailto:hsaseendran@uri.edu">hsaseendran@uri.edu</a>
+                <p>Studies genetic machine learning algorithms for manufacturing process optimization.</p>
               </div>
             </article>
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/jay-sun-rutledge.jpg" alt="Jay-Sun Rutledge" /></div>
               <div class="profile-meta">
-                <strong>Marcus Reed</strong>
+                <strong>Jay-Sun Rutledge</strong>
                 <span class="profile-role">MS Student</span>
-                <a href="mailto:marcus.reed@uri.edu">marcus.reed@uri.edu</a>
-                <p>Builds cyber-physical scenario training for operational readiness.</p>
+                <a href="mailto:jaysun_rutledge@uri.edu">jaysun_rutledge@uri.edu</a>
+                <p>Builds computer vision systems for manufacturing quality control.</p>
               </div>
             </article>
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/seun-filaoye.jpg" alt="Seun Fiaoye" /></div>
               <div class="profile-meta">
-                <strong>Elena Rossi</strong>
+                <strong>Seun Fiaoye</strong>
                 <span class="profile-role">MS Student</span>
-                <a href="mailto:elena.rossi@uri.edu">elena.rossi@uri.edu</a>
-                <p>Designs scheduling dashboards for resilient supply networks.</p>
-              </div>
-            </article>
-            <article class="profile-card">
-              <div class="avatar"></div>
-              <div class="profile-meta">
-                <strong>Noah Wilson</strong>
-                <span class="profile-role">MS Student</span>
-                <a href="mailto:noah.wilson@uri.edu">noah.wilson@uri.edu</a>
-                <p>Analyzes cyber-physical anomalies in smart grid operations.</p>
+                <a href="mailto:filaoye15@uri.edu">filaoye15@uri.edu</a>
+                <p>Designs administrative systems for manufacturing testbeds.</p>
               </div>
             </article>
           </div>
@@ -152,30 +151,21 @@
           <h2>Undergraduate Researchers</h2>
           <div class="card-grid">
             <article class="profile-card">
-              <div class="avatar"></div>
+              <div class="avatar"><img src="assets/photos/andrew-oxley.jpg" alt="Andrew Oxley" /></div>
               <div class="profile-meta">
-                <strong>Maya Brooks</strong>
+                <strong>Andrew Oxley</strong>
                 <span class="profile-role">Undergraduate Researcher</span>
-                <a href="mailto:maya.brooks@uri.edu">maya.brooks@uri.edu</a>
-                <p>Supports digital twin visualization for supply chain labs.</p>
+                <a href="mailto:andrew_oxley@uri.edu">andrew_oxley@uri.edu</a>
+                <p>Produces CNC tooling for manufacturing testbeds.</p>
               </div>
             </article>
             <article class="profile-card">
               <div class="avatar"></div>
               <div class="profile-meta">
-                <strong>Owen Davis</strong>
+                <strong>Juan Lopez</strong>
                 <span class="profile-role">Undergraduate Researcher</span>
-                <a href="mailto:owen.davis@uri.edu">owen.davis@uri.edu</a>
-                <p>Builds data pipelines for resilient manufacturing sensor analytics.</p>
-              </div>
-            </article>
-            <article class="profile-card">
-              <div class="avatar"></div>
-              <div class="profile-meta">
-                <strong>Hannah Park</strong>
-                <span class="profile-role">Undergraduate Researcher</span>
-                <a href="mailto:hannah.park@uri.edu">hannah.park@uri.edu</a>
-                <p>Assists in testbed automation for cyber-physical experiments.</p>
+                <a href="mailto:juan.lopez@uri.edu">juan.lopez@uri.edu</a>
+                <p>Builds data pipelines for manufacturing testbed in accordance of Industry 4.0.</p>
               </div>
             </article>
           </div>
@@ -187,8 +177,10 @@
   <footer>
     <div class="container footer-grid">
       <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
-      <p><a href="mailto:ise-group@uri.edu">ise-group@uri.edu</a></p>
       <div class="footer-controls" role="region" aria-label="Display controls">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+          <span data-theme-icon aria-hidden="true">◐</span> <span data-theme-label>Auto</span>
+        </button>
         <div>
           <button type="button" data-text-toggle aria-expanded="false">Text Size</button>
           <div class="text-size-panel" data-text-panel data-open="false">
@@ -206,11 +198,43 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");
     }
+  </script>
+  <script>
+    const studentGroupTitles = new Set([
+      "Doctoral Students",
+      "Masters Students",
+      "Undergraduate Researchers"
+    ]);
+
+    const shuffleInPlace = (items) => {
+      for (let i = items.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+      }
+    };
+
+    document
+      .querySelectorAll(".profile-section")
+      .forEach((section) => {
+        const title = section.querySelector("h2")?.textContent?.trim();
+        if (!studentGroupTitles.has(title)) {
+          return;
+        }
+
+        const grid = section.querySelector(".card-grid");
+        if (!grid) {
+          return;
+        }
+
+        const cards = Array.from(grid.children);
+        shuffleInPlace(cards);
+        cards.forEach((card) => grid.appendChild(card));
+      });
   </script>
 </body>
 </html>

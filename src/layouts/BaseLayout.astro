@@ -1,0 +1,115 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}
+
+const {
+  title = "URI Industrial & Systems Engineering",
+  description = "The URI ISE Group develops optimization algorithms, machine-learning models, digital-twin simulations, and data-driven pipelines.",
+  image = "/assets/photos/uri-testbed.webp",
+  url = "https://uri-ise.github.io"
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph tags for Social Proof/Sharing -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, url)} />
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="website" />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#002147" />
+
+    <ClientRouter />
+    
+    <script is:inline>
+      // Run theme initialization safely
+      const initTheme = () => {
+        var t = localStorage.getItem("uri-ise-theme") || "system";
+        var dark = t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme:dark)").matches);
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      };
+      
+      initTheme();
+      document.addEventListener('astro:after-swap', initTheme);
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    
+    <header class="site-header">
+        <div class="container nav">
+            <div class="brand">
+                <a href="/">URI Industrial & Systems Engineering</a>
+                <span>Optimization · Machine Learning · Smart Manufacturing</span>
+            </div>
+            <nav aria-label="Primary">
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown-wrapper">
+                      <span>Our Work ▼</span>
+                      <ul class="dropdown-menu">
+                        <li><a href="/projects">Research</a></li>
+                        <li><a href="/roster">Lab & People</a></li>
+                      </ul>
+                    </li>
+                    <li><a class="nav-highlight" href="/industry4-0">Industry 4.0</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <slot />
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
+            <div class="footer-controls" role="region" aria-label="Display controls">
+                <button type="button" class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle color theme">
+                    <span aria-hidden="true">◐</span> <span>Theme</span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Main client-side script wrapper
+        // Handled via Astro page loads
+        document.addEventListener('astro:page-load', () => {
+            const themeBtn = document.getElementById('theme-toggle-btn');
+            if(themeBtn) {
+              themeBtn.addEventListener('click', () => {
+                  let current = document.documentElement.getAttribute('data-theme');
+                  let next = current === 'dark' ? 'light' : 'dark';
+                  document.documentElement.setAttribute('data-theme', next);
+                  localStorage.setItem('uri-ise-theme', next);
+              });
+            }
+            
+            // Re-register SW
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("/sw.js").catch(()=>{});
+            }
+        });
+    </script>
+</body>
+</html>

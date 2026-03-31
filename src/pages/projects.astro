@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="URI ISE | Research">
+  <section class="page-header section-compact">
+    <div class="container">
+      <h1>Research</h1>
+      <p class="tagline">Six integrated research threads — from algorithms and simulation to physical testbeds.</p>
+      <div class="page-header-media">
+        <!-- Replaced ugly GIF with clean looping MP4 video -->
+        <video class="page-header-img" autoplay loop muted playsinline style="width: 100%; border-radius: var(--radius-md);">
+          <source src="/assets/photos/uri-robotvid.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Detailed Research Threads ===== -->
+  <section class="section section-compact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Research Threads</h2>
+        <p>Deep dives into the problems and methods that drive our lab.</p>
+      </div>
+
+      <div class="research-rows">
+        <article class="research-row">
+          <div class="research-row-label">Digital Twins</div>
+          <div class="research-row-body">
+            <h3>Simulation, Validation &amp; Chaos Engineering</h3>
+            <p>High-fidelity digital twins built on ROS 2 and Unity let us validate control logic, inject faults, and stress-test cyber-physical systems before deployment — bridging the sim-to-real gap for robotic workcells and logistics hubs.</p>
+            <ul>
+              <li>ROS 2 / Gazebo hardware-in-the-loop testbeds</li>
+              <li>Unity-based 3-D visualization dashboards</li>
+              <li>Automated fault-injection and recovery scoring</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-row">
+          <div class="research-row-label">Smart Mfg &amp; CNC</div>
+          <div class="research-row-body">
+            <h3>Intelligent Machining &amp; Tooling</h3>
+            <p>We develop GCode interception and validation pipelines for CNC systems and produce custom tooling on our in-house machines, closing the loop between digital design and physical production.</p>
+            <ul>
+              <li>Real-time GCode validation for CNC machining</li>
+              <li>Custom tooling fabrication and rapid iteration</li>
+              <li>Sensor-rich machine monitoring</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-row">
+          <div class="research-row-label">Optimization</div>
+          <div class="research-row-body">
+            <h3>Scheduling, Coordination &amp; Process Control</h3>
+            <p>From job-shop scheduling to multi-agent coordination in smart factory layouts, our algorithms minimize cycle time and energy use while meeting throughput targets.</p>
+            <ul>
+              <li>Deep reinforcement learning for production scheduling</li>
+              <li>Genetic ML algorithms for process optimization</li>
+              <li>Multi-agent coordination in flexible workcells</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-row">
+          <div class="research-row-label">Vision &amp; QC</div>
+          <div class="research-row-body">
+            <h3>Computer Vision for Quality Control</h3>
+            <p>We build computer vision systems that inspect parts in real time, catching defects at the point of manufacture and feeding data back into process-control loops.</p>
+            <ul>
+              <li>Defect detection via convolutional neural networks</li>
+              <li>Camera-guided robotic pick-and-place</li>
+              <li>Dimensional measurement and tolerance verification</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-row">
+          <div class="research-row-label">Data &amp; IIoT</div>
+          <div class="research-row-body">
+            <h3>Data Pipelines &amp; the Industrial Internet of Things</h3>
+            <p>Sensor data flows from PLCs, conveyors, and robotic arms into pipelines that clean, transform, and visualize operational metrics — providing the data layer that makes Industry 4.0 possible.</p>
+            <ul>
+              <li>End-to-end data pipeline design for manufacturing testbeds</li>
+              <li>SCADA and OPC-UA integration</li>
+              <li>Real-time dashboards and anomaly alerting</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="research-row">
+          <div class="research-row-label">Cyber-Physical</div>
+          <div class="research-row-body">
+            <h3>Resilient Cyber-Physical Systems</h3>
+            <p>Our testbed automation work ensures that cyber-physical systems remain operational under adverse conditions — validating edge-first architectures for contested and degraded environments.</p>
+            <ul>
+              <li>Automated testbed provisioning and orchestration</li>
+              <li>Edge inference under intermittent connectivity</li>
+              <li>MANET routing and zero-knowledge identity verification</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Live Projects & Tools ===== -->
+  <section class="section section-compact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Projects &amp; Tools</h2>
+        <p>Applied software built and maintained by the lab.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card project-card">
+          <span>Applied Systems</span>
+          <h3>Tower of Hanoi Solver</h3>
+          <p>Interactive solver and algorithmic visualization for production scheduling reasoning.</p>
+          <a class="button primary" href="/hanoi/">Open Project</a>
+        </article>
+        <article class="card project-card">
+          <span>Human-Centered</span>
+          <h3>RSVP Speed Reader</h3>
+          <p>Rapid serial visual presentation research tool for cognitive workflows.</p>
+          <a class="button primary" href="/rsvp-reading/">Open Project</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

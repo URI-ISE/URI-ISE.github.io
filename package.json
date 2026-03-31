@@ -1,0 +1,26 @@
+{
+  "name": "uri-ise.github.io",
+  "version": "1.0.0",
+  "description": "Public-facing website for the **University of Rhode Island Industrial & Systems Engineering (ISE)** research group, led by Dr. Manbir Sodhi. Hosted on [GitHub Pages](https://uri-ise.github.io).",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/URI-ISE/URI-ISE.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/URI-ISE/URI-ISE.github.io/issues"
+  },
+  "homepage": "https://github.com/URI-ISE/URI-ISE.github.io#readme",
+  "dependencies": {
+    "astro": "^6.1.2"
+  }
+}

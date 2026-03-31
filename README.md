@@ -1,6 +1,6 @@
 # URI Industrial & Systems Engineering
 
-Public-facing website for the **University of Rhode Island Industrial & Systems Engineering (ISE)** research group, led by Dr. Manbir Sodhi. Hosted on [GitHub Pages](https://uri-ise.github.io).
+Public-facing website for the **University of Rhode Island Industrial & Systems Engineering (ISE)** research group, led by Dr. Manbir Sodhi. Hosted on [GitHub Pages](iseuri.org).
 
 ## Description
 

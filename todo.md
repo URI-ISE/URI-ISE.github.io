@@ -5,10 +5,10 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
 ---
 
 ## 🐛 Bug Fixes & Immediate Needs
-- [ ] ⭐ **Navigation Highlighting Logic**
+- [x] ⭐ **Navigation Highlighting Logic**
   - **Issue**: The `nav-highlight` class is incorrectly hardcoded onto the "Industry 4.0" link on every page.
   - **Action**: Update the navigation logic in Astro so `nav-highlight` dynamically applies to the current page URL.
-- [ ] **Dark Mode Navigation Styling**
+- [x] **Dark Mode Navigation Styling**
   - **Issue**: The dropdown menu styling breaks in dark mode. Text becomes illegible (e.g., white text on white background or dark blue on a dark background for "Our Work").
   - **Action**: Update CSS variables in global styles ensuring `.dropdown-menu` and hover states have proper contrast in the `[data-theme="dark"]` selector.
 - [ ] **Broken Project Links**
@@ -44,7 +44,7 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
 ---
 
 ## 🛠️ Tech Debt & Architecture
-- [ ] **Extract Reusable Components**
+- [x] **Extract Reusable Components**
   - **Description**: `src/layouts/BaseLayout.astro` currently hardcodes the Header, Navigation, and Footer. 
   - **Action**: Create a `src/components/` directory. Extract the `<header>` into `Header.astro` and `<nav>` / `<footer>` into their own components to DRY up code.
 - [ ] **Adopt Astro Content Collections**
@@ -70,5 +70,42 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
   - **Action**: Add (or update) logos for trusted industry partners. 
 - [ ] **Projects Page Content**
   - **Action**: Add Capstone projects and designate a section specifically for Faculty projects.
-- [ ] **Footer Links**
+- [x] **Footer Links**
   - **Action**: Ensure the global Footer includes working links to all main pages and proper social media links.
+
+---
+
+## 📸 Asset & Photography Requests
+*Images needed for the URI ISE website. (Target 2x display density).*
+
+- [ ] **Industry 4.0 hero/banner image**
+  - **Context**: Top of industry4-0.html; wide banner showing smart manufacturing environment.
+  - **Ideal content**: Robotic arms, conveyor belt, or digital overlay on shop floor.
+  - **Dimensions**: 1600×600 px minimum.
+- [x] **Capstone Room (FCAE 180A) photo**
+  - **Context**: Lab Infrastructure section on industry4-0.html.
+  - **Ideal content**: Wide shot of the testbed — Niryo Ned2 robots, xArms, conveyors, AVRS system.
+- [x] **Vehicular Vision & Tracking Lab (KIRK) photo**
+  - **Context**: Lab Infrastructure section on industry4-0.html.
+  - **Ideal content**: Vision equipment, laser cutter, 3-D printers.
+- [ ] **CNC machine close-up**
+  - **Context**: Smart Mfg & CNC research row on industry4-0.html.
+  - **Ideal content**: CNC spindle with sensors attached, machining in progress.
+  - **Dimensions**: 600×400 px.
+- [ ] **Niryo Ned2 or xArm in action**
+  - **Context**: Research section or certificate marketing.
+  - **Ideal content**: Collaborative robot performing pick-and-place or assembly task.
+  - **Dimensions**: 600×400 px.
+- [x] **Student working at testbed**
+  - **Context**: Certificate section or general promotional.
+  - **Ideal content**: Graduate or capstone student interacting with lab equipment.
+
+---
+
+## 🔍 SEO & Visibility
+- [ ] **Google Search Console Integration**
+  - **Action**: Register the live production domain with Google Search Console to enforce crawl indexing and track search performance metrics.
+- [ ] **Sitemap Generation & Robots.txt**
+  - **Action**: Install `@astrojs/sitemap` to auto-generate `sitemap.xml` on build and create a `robots.txt` in the `/public` folder explicitly allowing web crawlers.
+- [ ] **Meta Tags & Title Tuning**
+  - **Action**: Pass highly specific SEO meta descriptions and keyword-rich titles to `BaseLayout.astro` dynamically based on the current page to boost search engine placement.

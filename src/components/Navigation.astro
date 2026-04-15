@@ -1,0 +1,25 @@
+---
+const currentPath = Astro.url.pathname;
+
+function isCurrent(path: string) {
+  // Strip trailing slash if not root
+  const url = currentPath.endsWith('/') && currentPath !== '/' 
+    ? currentPath.slice(0, -1) 
+    : currentPath;
+  return url === path;
+}
+---
+<nav aria-label="Primary">
+    <ul class="nav-links">
+        <li><a class={isCurrent("/") ? "nav-highlight" : ""} href="/">Home</a></li>
+        <li class="dropdown-wrapper">
+          <span class={isCurrent("/projects") || isCurrent("/roster") ? "nav-highlight" : ""}>Our Work ▼</span>
+          <ul class="dropdown-menu">
+            <li><a href="/projects">Research</a></li>
+            <li><a href="/roster">Lab & People</a></li>
+          </ul>
+        </li>
+        <li><a class={isCurrent("/industry4-0") ? "nav-highlight" : ""} href="/industry4-0">Industry 4.0</a></li>
+        <li><a class={isCurrent("/contact") ? "nav-highlight" : ""} href="/contact">Contact</a></li>
+    </ul>
+</nav>

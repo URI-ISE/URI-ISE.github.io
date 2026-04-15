@@ -1,6 +1,8 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 export interface Props {
   title?: string;
@@ -53,43 +55,13 @@ const {
 <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     
-    <header class="site-header">
-        <div class="container nav">
-            <div class="brand">
-                <a href="/">URI Industrial & Systems Engineering</a>
-                <span>Optimization · Machine Learning · Smart Manufacturing</span>
-            </div>
-            <nav aria-label="Primary">
-                <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
-                    <li class="dropdown-wrapper">
-                      <span>Our Work ▼</span>
-                      <ul class="dropdown-menu">
-                        <li><a href="/projects">Research</a></li>
-                        <li><a href="/roster">Lab & People</a></li>
-                      </ul>
-                    </li>
-                    <li><a class="nav-highlight" href="/industry4-0">Industry 4.0</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <Header />
 
     <main id="main">
         <slot />
     </main>
 
-    <footer>
-        <div class="container footer-grid">
-            <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
-            <div class="footer-controls" role="region" aria-label="Display controls">
-                <button type="button" class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle color theme">
-                    <span aria-hidden="true">◐</span> <span>Theme</span>
-                </button>
-            </div>
-        </div>
-    </footer>
+    <Footer />
 
     <script>
         // Main client-side script wrapper

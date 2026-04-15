@@ -145,6 +145,11 @@ textarea {
   font-size: inherit;
 }
 
+option {
+  background-color: var(--bg-elevated);
+  color: var(--text);
+}
+
 .container {
   width: min(100% - 2rem, var(--max-width));
   margin: 0 auto;
@@ -276,7 +281,7 @@ textarea {
 }
 .dropdown-menu a:hover {
   background: var(--section-bg);
-  color: var(--color-primary) !important;
+  color: var(--color-accent-1) !important;
 }
 
 .footer-controls {
@@ -493,7 +498,7 @@ textarea {
 .card-grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .section-compact .card-grid,

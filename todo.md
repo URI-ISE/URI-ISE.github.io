@@ -110,3 +110,7 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
   - **Action**: Install `@astrojs/sitemap` to auto-generate `sitemap.xml` on build and create a `robots.txt` in the `/public` folder explicitly allowing web crawlers.
 - [ ] **Meta Tags & Title Tuning**
   - **Action**: Pass highly specific SEO meta descriptions and keyword-rich titles to `BaseLayout.astro` dynamically based on the current page to boost search engine placement.
+     
+
+
+    https://scholar.google.com/citations?user=PjOwd54AAAAJ&hl=en&oi=sra

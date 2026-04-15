@@ -37,6 +37,7 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
   - **Description**: The background video needs an update to look more professional.
   - **Action**: Apply a "techy" filter/overlay to the testbed operation video so it feels less like a home video, OR add a stylized outline of Rhode Island to make it distinct.
   - **Action**: Add a new, high-quality testbed photo to the homepage.
+- [ ] **Integration of Stephen's MES Lego Factory Flask App in Projects**
 - [ ] **Contact Page Security**
   - **Description**: The contact form is vulnerable to spam.
   - **Action**: Add security (like a hidden honeypot field or reCAPTCHA) to the "Send a Message" form to prevent bots. Update the page to feature all physical lab locations.

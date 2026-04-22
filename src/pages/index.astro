@@ -143,7 +143,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             const colorNode = isDark ? 'rgba(81, 162, 255, ' : 'rgba(0, 80, 158, ';
             const colorHub = isDark ? 'rgba(179, 156, 77, ' : 'rgba(179, 156, 77, '; // Golden
             const colorFlow = isDark ? 'rgba(179, 156, 77, ' : 'rgba(179, 156, 77, ';
-            const colorMapStroke = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 33, 71, 0.1)';
+            const colorMapStroke = isDark ? 'rgba(255, 255, 255, 0.001)' : 'rgba(0, 33, 71, 0.005)';
             
             // Dynamic number of nodes based on screen width
             const numNodes = Math.min(Math.floor(width / 20), 80);
@@ -151,8 +151,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             // Central Hub: URI Kingston Campus
             const uriHub = {
                 id: 'hub',
-                x: width * 0.32,
-                y: height * 0.72,
+                x: width * .5,
+                y: height * 0.5,
                 baseRadius: 6,
                 pulse: 0
             };
@@ -239,8 +239,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 ctx.clearRect(0, 0, width, height);
                 
                 // Ensure Hub stays accurate on resize
-                uriHub.x = width * 0.32;
-                uriHub.y = height * 0.72;
+                uriHub.x = width * 0.50;
+                uriHub.y = height * 0.50;
                 
                 drawMapOutline();
 

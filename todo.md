@@ -18,7 +18,7 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
 ---
 
 ## 🚀 New Features & Enhancements
-- [ ] ⭐ **Contact Form Dropdown Categories**
+- [x ] ⭐ **Contact Form Dropdown Categories**
   - **Description**: The 'Subject' dropdown menu in the contact form is currently empty.
   - **Action**: Populate it with options (e.g. "Research Collaboration", "Prospective Student Inquiry", "General Questions").
 - [ ] ⭐ **Accessibility Audit & Alt Text**

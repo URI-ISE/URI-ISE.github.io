@@ -1,0 +1,101 @@
+---
+interface Props {
+  number: number;
+  label: string;
+  symbol?: string; // For things like "+" or "%"
+  prefix?: string;
+  decimals?: number
+}
+
+const { number, label, prefix = "", symbol = "", decimals=0} = Astro.props;
+---
+
+<div class="stat-card">
+  <div class="number-container">
+    <span> {prefix} </span>
+    <span class="count-up" data-target={number} data-decimals={decimals} style="opacity: 0;">
+  {number}</span>{symbol}
+  </div>
+  <p class="stat-label">{label}</p>
+</div>
+
+<style>
+  .stat-card {
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .number-container {
+    font-size: 5rem;
+    font-weight: 80;
+    color: var(--color-accent, #b39c4d); 
+    font-variant-numeric: tabular-nums; /* Prevents text from "jumping" as numbers change */
+  }
+  .stat-label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+</style>
+
+<script>
+  // This function handles the actual "spinning"
+  function animateValue(el) {
+  const target = +el.getAttribute('data-target');
+  const decimals = +el.getAttribute('data-decimals') || 0; // Grab the decimal count
+  const duration = 4000;
+  let startTimestamp = null;
+
+  el.style.opacity = "1";
+
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    const easeOut = 1 - Math.pow(1 - progress, 4);
+    
+    // Calculate the current value
+    const currentValue = easeOut * target;
+    
+    // Use toFixed to show the correct number of decimal places
+    el.innerText = currentValue.toFixed(decimals);
+    
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      // Ensure it lands exactly on the target number at the end
+      el.innerText = target.toFixed(decimals);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+  function initObservers() {
+    const observerOptions = {
+      threshold: 0.4, // Trigger when 20% of the card is visible
+      rootMargin: '0px 0px -50px 0px' // Slight offset so it doesn't trigger "too" early
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add a small delay so the user's eye can catch the start
+          setTimeout(() => animateValue(entry.target), 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.count-up').forEach(el => {
+      // RESET: Ensure it starts at 0 before the observer hits it
+      el.innerText = "0"; 
+      observer.observe(el);
+    });
+  }
+
+ 
+  document.addEventListener('astro:page-load', initObservers);
+  
+  // Ensure it runs on the first load if not using View Transitions
+  if (document.readyState === 'complete') {
+    initObservers();
+  }
+</script>

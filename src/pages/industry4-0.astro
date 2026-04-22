@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import StatCard from "../components/StatCard.astro";
 ---
 
 <BaseLayout title="URI ISE | Industry 4.0">
@@ -20,6 +21,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <img src="/assets/photos/uri-niryorobot.webp" alt="Niryo Ned2 robot in the URI testbed" class="intro-image" loading="lazy" />
       </div>
     </div>
+ 
   </section>
 
   <section class="section section-compact">
@@ -28,6 +30,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <h2>How Our Lab Connects</h2>
         <p>Industry 4.0 isn't a single project — it's the thread that runs through everything we do.</p>
       </div>
+
+      
 
       <div class="card-grid card-grid-3x2">
                 <article class="card icon-card">
@@ -67,6 +71,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
+<section class="section section compact">
+  <div class="container">
+    <div class="section-header">
+      <h2> Industry 4.0 By The Numbers </h2>
+  </div>
+  <div class="stats-container" style="display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; margin: 0 auto; padding: 2rem; flex-wrap: wrap;">
+    <StatCard number={226} prefix= "$" label="Current Global Market" symbol="B" />
+    <StatCard number={30} label="Average OEE Boost" symbol="%" />
+    <StatCard number={97} label="New Jobs By 2030" symbol="M" decimals={0} />
+  </div>
+</section>
+
+
   <section class="section section-compact" id="certificate">
     <div class="container">
       <div class="section-header">
@@ -81,11 +98,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <!-- Social Proof Section for Industry Partners -->
       <div class="social-proof-banner" style="margin: 2rem 0; padding: 2rem; background: var(--bg-elevated); border: 1px solid var(--border-accent); border-radius: var(--radius-lg);">
         <h3 style="text-align: center; margin-bottom: 1.5rem; font-size: 1.25rem;">Trusted by Industry Leaders &amp; Alumni At</h3>
-        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; align-items: center; opacity: 0.6;">
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; align-items: center; opacity: 0.7;">
             <!-- Placeholders for Industry Logos / Proof -->
-            <div style="font-weight: 700; font-size: 1.5rem;">[ General Dynamics ]</div>
-            <div style="font-weight: 700; font-size: 1.5rem;">[ Raytheon ]</div>
-            <div style="font-weight: 700; font-size: 1.5rem;">[ Amgen ]</div>
+            <img src="/assets/photos/logos/general-dynamics.png" alt="General Dynamics Logo" style="height: 175px; width: auto; brightness(1.2);">
+            <img src="/assets/photos/logos/raytheon.png" alt="Raytheon Logo" style="height: 100px; width: auto; brightness(1.2);">
+            <img src="/assets/photos/logos/amgen.png" alt="Amgen Logo" style="height: 150px; width: auto; brightness(1.2);">
         </div>
         <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-style: italic;">"The Industry 4.0 certification gave our engineers the exact cyber-physical skills needed to rapidly modernize our production testbeds." - Alumni Placeholder</p>
       </div>

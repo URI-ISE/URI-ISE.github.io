@@ -11,14 +11,14 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
 - [x] **Dark Mode Navigation Styling**
   - **Issue**: The dropdown menu styling breaks in dark mode. Text becomes illegible (e.g., white text on white background or dark blue on a dark background for "Our Work").
   - **Action**: Update CSS variables in global styles ensuring `.dropdown-menu` and hover states have proper contrast in the `[data-theme="dark"]` selector.
-- [ ] **Broken Project Links**
+- [x] **Broken Project Links**
   - **Issue**: Currently, only Luke's projects are listed on the Projects page, and the links do not work.
   - **Action**: Fix routing for existing projects and ensure valid URLs.
 
 ---
 
 ## 🚀 New Features & Enhancements
-- [x ] ⭐ **Contact Form Dropdown Categories**
+- [x] ⭐ **Contact Form Dropdown Categories**
   - **Description**: The 'Subject' dropdown menu in the contact form is currently empty.
   - **Action**: Populate it with options (e.g. "Research Collaboration", "Prospective Student Inquiry", "General Questions").
 - [ ] ⭐ **Accessibility Audit & Alt Text**
@@ -30,7 +30,7 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
 - [ ] **Dynamic Data Integration & Visuals**
   - **Description**: We need a way to integrate lab research data directly into the website.
   - **Action**: Implement charts/graphs detailing research output, sensor data, or other lab metrics.
-- [ ] ⭐ **Homepage Hero Text Redundancy**
+- [x] ⭐ **Homepage Hero Text Redundancy**
   - **Description**: The subheader "Optimization • Machine Learning • Smart Manufacturing" appears twice in the hero section.
   - **Action**: Remove the redundant top instance for a cleaner visual hierarchy.
 - [ ] **Homepage Video & Media Enhancement**
@@ -55,7 +55,7 @@ Welcome to the URI Industrial & Systems Engineering lab website repository! This
 ---
 
 ## 📝 Content Updates
-- [ ] **Roster & Alumni**
+- [x] **Roster & Alumni**
   - **Action**: ⭐ Remove or replace raw `[TODO]` links found across the "Lab & People" bios and social media profiles.
   - **Action**: Update all existing Lab members with Google Scholar links and GitHub profiles.
   - **Action**: Add missing emails for Jake Yaco and Juan Lopez.

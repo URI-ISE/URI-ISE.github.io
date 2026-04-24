@@ -83,6 +83,13 @@ Bump `CACHE_NAME` (currently `uri-ise-static-v2`) after changing any pre-cached 
 
 Network-first with cache fallback. Cache name: `rsvp-reader-v2`.
 
+## Contact Routing
+
+- The site is hosted on GitHub Pages and does not run a backend mail handler.
+- Contact inquiries are currently routed from the contact page to `sodhi@uri.edu` using a `mailto:` flow.
+- The subject is prefilled in this format: `ISEURI Forward: <topic>`.
+- Domain-level forwarding for `iseuri.org` addresses must be configured in the external email/domain provider admin panel.
+
 ## Repo Structure
 
 ```

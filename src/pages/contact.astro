@@ -21,7 +21,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <p>
             Interested in research collaboration, the Industry 4.0 Certificate, or learning more about our lab? Reach out.
           </p>
-          <form action="/contact-success" method="POST">
+          <p style="margin-top: 0.75rem; color: var(--text-muted);">
+            All inquiries are currently forwarded to sodhi@uri.edu.
+          </p>
+          <form id="contact-form">
             <label for="name" class="visually-hidden" style="display:none;">Name</label>
             <input type="text" id="name" name="name" placeholder="Your Name" required />
 
@@ -42,6 +45,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
             <button type="submit" class="button primary">Submit Inquiry</button>
           </form>
+          <p style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem;">
+            Your email client will open with the subject format: ISEURI Forward: Topic.
+          </p>
         </article>
 
         <!-- Lab Location & Details -->
@@ -66,4 +72,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    const contactForm = document.getElementById("contact-form");
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("name")?.value?.trim() || "";
+        const email = document.getElementById("email")?.value?.trim() || "";
+        const topic = document.getElementById("subject")?.value || "other";
+        const message = document.getElementById("message")?.value?.trim() || "";
+
+        const topicMap = {
+          research: "Research Partnerships",
+          certificate: "Industry 4.0 Certificate",
+          "prospective-student": "Prospective Student Inquiry",
+          other: "Other"
+        };
+
+        const topicExtension = topicMap[topic] || "Other";
+        const subject = `ISEURI Forward: ${topicExtension}`;
+        const body = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Topic: ${topicExtension}`,
+          "",
+          "Message:",
+          message
+        ].join("\n");
+
+        window.location.href = `mailto:sodhi@uri.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+    }
+  </script>
 </BaseLayout>

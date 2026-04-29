@@ -4,7 +4,7 @@ Public-facing website for the **University of Rhode Island Industrial & Systems 
 
 ## Description
 
-The URI ISE lab focuses on optimization, machine learning, digital-twin simulation, data pipelines, and smart manufacturing. This repository contains the static site that showcases research areas, lab members, the Graduate Certificate in Industry 4.0, interactive project demos, and contact information.
+The URI ISE lab focuses on optimization, machine learning, digital-twin simulation, data pipelines, and smart manufacturing. This repository contains the static site that showcases project demos, research topics, lab spaces, team members, the Graduate Certificate in Industry 4.0, and contact information.
 
 ## Key Features
 
@@ -32,8 +32,10 @@ The URI ISE lab focuses on optimization, machine learning, digital-twin simulati
 | Path | Description |
 |------|-------------|
 | `/` | Lab overview, mission, research areas |
-| `/roster.html` | Team members and roles |
-| `/projects.html` | Research project summaries and demo links |
+| `/projects.html` | Project demos and lab-built tools |
+| `/research.html` | Research topics and methods |
+| `/labs.html` | Lab spaces and locations |
+| `/people.html` | Team members and roles |
 | `/industry4-0.html` | Industry 4.0 overview, research connections, Graduate Certificate |
 | `/contact.html` | Contact form and lab-space information |
 | `/hanoi/` | Interactive Tower of Hanoi solver |
@@ -94,8 +96,10 @@ Network-first with cache fallback. Cache name: `rsvp-reader-v2`.
 
 ```
 ├── index.html             Home page
-├── roster.html            Team members and roles
-├── projects.html          Research project summaries
+├── projects.html          Project demos and lab-built tools
+├── research.html          Research topics and methods
+├── labs.html              Lab spaces and locations
+├── people.html            Team members and roles
 ├── contact.html           Contact form and lab info
 ├── industry4-0.html       Industry 4.0 & Graduate Certificate
 ├── assets/

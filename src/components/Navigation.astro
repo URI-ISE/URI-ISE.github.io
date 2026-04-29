@@ -12,14 +12,10 @@ function isCurrent(path: string) {
 <nav aria-label="Primary">
     <ul class="nav-links">
         <li><a class={isCurrent("/") ? "nav-highlight" : ""} href="/">Home</a></li>
-        <li class="dropdown-wrapper">
-          <span class={isCurrent("/projects") || isCurrent("/roster") ? "nav-highlight" : ""}>Our Work ▼</span>
-          <ul class="dropdown-menu">
-            <li><a href="/projects">Research</a></li>
-            <li><a href="/roster">Lab & People</a></li>
-          </ul>
-        </li>
+        <li><a class={isCurrent("/projects") ? "nav-highlight" : ""} href="/projects">Projects</a></li>
+        <li><a class={isCurrent("/research") ? "nav-highlight" : ""} href="/research">Research</a></li>
         <li><a class={isCurrent("/industry4-0") ? "nav-highlight" : ""} href="/industry4-0">Industry 4.0</a></li>
+        <li><a class={isCurrent("/people") ? "nav-highlight" : ""} href="/people">People</a></li>
         <li><a class={isCurrent("/contact") ? "nav-highlight" : ""} href="/contact">Contact</a></li>
     </ul>
 </nav>

@@ -2,35 +2,176 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="URI ISE | Projects">
+<BaseLayout
+  title="URI ISE | Projects"
+  description="Lab-built systems from the URI ISE Group: UWB indoor tracking with a Unity digital twin, an Alvik robot swarm solving routing problems, edge-delegated authorization on a UR5, and sensor-integrated CNC machining."
+>
   <section class="page-header section-compact">
     <div class="container">
       <h1>Projects</h1>
-      <p class="tagline">Applied demos, tools, and lab-built software.</p>
-      <p>Research topics now live on the dedicated Research Topics page so this page can stay focused on project demos and utilities.</p>
+      <p class="tagline">Applied systems built and studied in the lab.</p>
+      <p>
+        Working hardware, real experiments. These projects grow out of the lab's
+        <a href="/research">research threads</a> and the
+        <a href="/industry4-0#certificate">Industry 4.0 certificate</a> coursework.
+      </p>
     </div>
   </section>
 
   <section class="section section-compact">
     <div class="container">
-      <div class="section-header">
-        <h2>Projects &amp; Tools</h2>
-        <p>Applied software and demos built and maintained by the lab.</p>
-      </div>
-      <div class="card-grid">
-        <article class="card project-card">
-          <span>Applied Systems</span>
-          <h3>Tower of Hanoi Solver</h3>
-          <p>Interactive solver and algorithmic visualization for production scheduling reasoning.</p>
-          <a class="button primary" href="/hanoi/">Open Project</a>
-        </article>
-        <article class="card project-card">
-          <span>Human-Centered</span>
-          <h3>RSVP Speed Reader</h3>
-          <p>Rapid serial visual presentation research tool for cognitive workflows.</p>
-          <a class="button primary" href="/rsvp-reading/">Open Project</a>
-        </article>
-      </div>
+
+      <article class="project-entry">
+        <span class="project-kicker">Industry 4.0 Special Projects · ISE 575</span>
+        <h2>Marco Polo — Precision Indoor Asset Tracking</h2>
+        <p>
+          Marco Polo is a precision indoor tracking and localization system built as the final project of
+          the Industry 4.0 certificate sequence. A distributed Ultra-Wideband (UWB) multi-node network —
+          three fixed "seeker" nodes and a mobile "hider" tag — achieves centimeter-level indoor
+          positioning, mapped in real time onto a Unity digital twin of the capstone lab through 3-D
+          trilateration.
+        </p>
+        <p>The system separates real-time sensing from high-level visualization in three layers:</p>
+        <ul>
+          <li>
+            <strong>Sensor coprocessor</strong> — An Arduino Nano 33 BLE drives each DWM1000 UWB radio
+            over SPI, dedicated entirely to two-way ranging so timing-critical measurements are never
+            interrupted, with carrier-integrator clock-offset correction against temporal drift.
+          </li>
+          <li>
+            <strong>Data router</strong> — Raspberry Pi 4 base stations parse the serial telemetry, apply
+            median and moving-average filtering, and publish clean JSON to a central MQTT broker on the
+            local network.
+          </li>
+          <li>
+            <strong>Visualization engine</strong> — The Unity digital twin subscribes to the broker and
+            runs a gradient-descent non-linear least-squares solver to intersect the three seeker
+            distances and track the hider in true 3-D space.
+          </li>
+        </ul>
+        <div class="project-media">
+          <figure class="project-figure">
+            <img src="/assets/photos/marcopolo-uwb-tag.jpg" alt="Breadboard-mounted UWB hider tag with an Arduino Nano 33 BLE and DWM1000 radio, labeled Tag #1" loading="lazy" />
+            <figcaption>The mobile hider node: Arduino Nano 33 BLE + DWM1000 UWB radio on a battery-backed breadboard.</figcaption>
+          </figure>
+          <figure class="project-figure">
+            <img src="/assets/photos/capstone-room-3d-scan.jpg" alt="Photogrammetry scan of the capstone lab room shown as a 3-D model" loading="lazy" />
+            <figcaption>A 3-D scan of the capstone lab — the environment the Unity digital twin tracks against.</figcaption>
+          </figure>
+          <figure class="project-figure">
+            <video controls muted playsinline preload="none" poster="/assets/photos/marcopolo-hunt-poster.jpg" width="480" height="260">
+              <source src="/assets/photos/marcopolo-hunt.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Live hunt inside the digital twin: trilateration rays from the three seekers converge on the hider as it moves through the scanned room.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="project-entry">
+        <span class="project-kicker">Swarm Robotics · Optimization</span>
+        <h2>Alvik Swarm — Multi-Robot Routing on a Physical Grid</h2>
+        <p>
+          A fleet of Arduino Alvik rovers turns a classic optimization problem into moving hardware. The
+          rovers operate on a printed grid beneath a fixed overhead camera; each carries an AprilTag on
+          its top plate, so the moment a powered-on rover enters the camera's view it is registered by
+          the central server and appears on the control page. Commands are issued to the whole swarm from
+          the server's dashboard.
+        </p>
+        <p>
+          The system localizes each rover by fusing wheel odometry with the overhead camera's AprilTag
+          detections — correcting the drift that odometry alone accumulates. On top of that positioning layer, a
+          genetic algorithm routes the swarm through a complex variant of the traveling-salesman problem:
+          "operators" are dropped off at grid locations and must be picked up again later, and the
+          measured objective is the full execution time of the system. The goal is to make the robots
+          reflect a real-world routing and logistics optimization problem — algorithm to action.
+        </p>
+        <div class="project-media">
+          <figure class="project-figure">
+            <img src="/assets/photos/alvik-tsp.JPEG" alt="Six illuminated Alvik rovers with AprilTags on their top plates navigating a large printed grid on a table in a darkened lab" loading="lazy" />
+            <figcaption>The swarm mid-run: Alvik rovers with AprilTag-topped plates traverse the printed grid while the overhead camera tracks each tag.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="project-entry">
+        <span class="project-kicker">Master's Thesis Research</span>
+        <h2>Edge-Delegated Authorization for Industrial Robots</h2>
+        <p>
+          Industrial robots that draw their operating authorization from a cloud identity provider halt
+          the moment the network drops — the expiring lease acts as an involuntary kill switch. This
+          thesis moves the authorization decision onto edge hardware beside the robot so work can continue
+          through an outage. Because no external authority can then revoke permission, the edge node must
+          be able to stop the robot itself: it maintains an exponentially weighted moving average (EWMA)
+          trust score that decays as local cryptographic verification degrades, and when the score falls
+          below threshold it de-energizes a 24&nbsp;V optocoupler wired into the safeguard inputs of a
+          Universal Robots UR5 controller.
+        </p>
+        <p>
+          The central contribution is a latency model that predicts, from the verification cycle time and
+          the EWMA weight, how quickly that stop occurs — exercised across 335 physical trials on the UR5
+          using a profiled elliptic-curve verification workload (~225&nbsp;ms per cycle).
+        </p>
+        <p class="project-note">
+          This is an exploratory investigation into authorization latency. It is <strong>not</strong> a
+          validated or standards-compliant functional-safety architecture, and the experimental design
+          operates outside the normative frameworks of ISO 13849-1, ISO 13855, and IEC 62061.
+        </p>
+        <div class="project-media">
+          <figure class="project-figure project-figure-portrait">
+            <img src="/assets/photos/ur5-wired-in.jpg" alt="Edge node breadboard with lit status LEDs wired into the safeguard input terminals of a Universal Robots UR5 controller cabinet" loading="lazy" />
+            <figcaption>The edge node wired into the UR5 controller's safeguard inputs through the 24&nbsp;V optocoupler stage.</figcaption>
+          </figure>
+          <figure class="project-figure">
+            <video controls muted playsinline preload="none" poster="/assets/photos/robot-safety-timeline-poster.jpg" width="480" height="270">
+              <source src="/assets/photos/robot-safety-timeline.mp4" type="video/mp4" />
+            </video>
+            <figcaption>One trial, animated: an injected attack decays the trust score until the threshold crossing halts the robot.</figcaption>
+          </figure>
+          <figure class="project-figure">
+            <video controls muted playsinline preload="none" poster="/assets/photos/ur5-trial-run-poster.jpg" width="480" height="260">
+              <source src="/assets/photos/ur5-trial-run.mp4" type="video/mp4" />
+            </video>
+            <figcaption>A physical trial: the UR5 executes its motion program while the edge node's telemetry streams in the terminal overlay.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="project-entry">
+        <span class="project-kicker">Smart Mfg &amp; CNC</span>
+        <h2>Sensor-Integrated CNC Machining</h2>
+        <p>
+          A major thread of the lab's work is instrumenting CNC machines with sensors and putting that
+          data to work: machine-learning models for predictive tool wear, digital twins of the machining
+          process, and data visualization that surfaces overall equipment effectiveness (OEE) for
+          optimization and performance improvement. Two machines anchor this work:
+        </p>
+        <ul>
+          <li>
+            <strong>Rownd CNC lathe</strong> — A programmable turning center the lab is using to produce
+            chess pieces while automating and optimizing the workflow for complex parts that require
+            4th-axis milling alongside turning.
+          </li>
+          <li>
+            <strong>Compact metal CNC</strong> — A small metal-cutting mill producing LEGO-scale parts
+            with incredibly tight clearances, pushing fixturing and tolerance control at miniature scale.
+          </li>
+        </ul>
+        <div class="project-media">
+          <figure class="project-figure">
+            <img src="/assets/photos/rownd-wideshot.jpeg" alt="Rownd CNC lathe workstation with its software dashboard on a monitor, the enclosed machine, and a Haas control pendant" loading="lazy" />
+            <figcaption>The Rownd station: process dashboard, enclosed turn-mill machine, and CNC control pendant.</figcaption>
+          </figure>
+          <figure class="project-figure">
+            <img src="/assets/photos/rownd-chess.jpg" alt="Inside the Rownd enclosure, a turned wooden chess piece held in the rotary chuck beneath the milling spindle" loading="lazy" />
+            <figcaption>A chess piece taking shape in the Rownd's rotary chuck — turning and 4th-axis milling on one platform.</figcaption>
+          </figure>
+          <figure class="project-figure">
+            <img src="/assets/photos/lego-cnc.jpeg" alt="Milling spindle above an aluminum fixture plate holding small metal brick parts with machined studs" loading="lazy" />
+            <figcaption>Miniature brick-style parts on the compact mill's fixture plate — stud-and-socket fits that demand very tight clearances.</figcaption>
+          </figure>
+        </div>
+      </article>
+
       <div class="section-cta">
         <a class="button secondary" href="/research">Explore Research Topics &rarr;</a>
       </div>

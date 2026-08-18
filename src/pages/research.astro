@@ -11,9 +11,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         The lab’s research spans algorithms, simulation, machine vision, industrial data systems, and resilient cyber-physical systems.
       </p>
       <div class="page-header-media">
-        <video class="page-header-img" autoplay loop muted playsinline style="width: 100%; border-radius: var(--radius-md);">
-          <source src="/assets/photos/uri-robotvid.mp4" type="video/mp4" />
-        </video>
+        <figure class="site-figure">
+          <video class="page-header-img" controls muted loop playsinline preload="none" poster="/assets/photos/uri-robotvid-poster.jpg">
+            <source src="/assets/photos/uri-robotvid.mp4" type="video/mp4" />
+          </video>
+          <figcaption>A collaborative robot cell on the lab's manufacturing testbed.</figcaption>
+        </figure>
       </div>
     </div>
   </section>

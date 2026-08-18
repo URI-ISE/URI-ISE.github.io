@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import StatCard from "../components/StatCard.astro";
 ---
 
 <BaseLayout title="URI ISE | Industry 4.0">
@@ -71,19 +70,6 @@ import StatCard from "../components/StatCard.astro";
     </div>
   </section>
 
-<section class="section section compact">
-  <div class="container">
-    <div class="section-header">
-      <h2> Industry 4.0 By The Numbers </h2>
-  </div>
-  <div class="stats-container" style="display: flex; justify-content: center; align-items: center; gap: 4rem; max-width: 1200px; margin: 0 auto; padding: 2rem; flex-wrap: wrap;">
-    <StatCard number={226} prefix= "$" label="Current Global Market" symbol="B" />
-    <StatCard number={30} label="Average OEE Boost" symbol="%" />
-    <StatCard number={97} label="New Jobs By 2030" symbol="M" decimals={0} />
-  </div>
-</section>
-
-
   <section class="section section-compact" id="certificate">
     <div class="container">
       <div class="section-header">
@@ -93,12 +79,6 @@ import StatCard from "../components/StatCard.astro";
 
       <div class="page-header-media" style="margin-bottom:1.5rem;">
         <img src="/assets/photos/cypherstatehouseaction.jpg" alt="Students in action presenting Industry 4.0 projects" class="page-header-img" loading="lazy" />
-      </div>
-
-      <!-- Social Proof Section for Industry Partners -->
-      <div class="social-proof-banner" style="margin: 2rem 0; padding: 2rem; background: var(--bg-elevated); border: 1px solid var(--border-accent); border-radius: var(--radius-lg);">
-        <h3 style="text-align: center; margin-bottom: 1rem; font-size: 1.25rem;">Alumni Impact Spotlight</h3>
-        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-style: italic;">"The Industry 4.0 certification gave our engineers the exact cyber-physical skills needed to rapidly modernize our production testbeds." - Alumni Placeholder</p>
       </div>
 
       <div class="card-grid" style="margin-bottom:2rem;">

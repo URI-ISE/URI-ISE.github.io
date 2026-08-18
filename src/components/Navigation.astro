@@ -3,19 +3,48 @@ const currentPath = Astro.url.pathname;
 
 function isCurrent(path: string) {
   // Strip trailing slash if not root
-  const url = currentPath.endsWith('/') && currentPath !== '/' 
-    ? currentPath.slice(0, -1) 
+  const url = currentPath.endsWith('/') && currentPath !== '/'
+    ? currentPath.slice(0, -1)
     : currentPath;
   return url === path;
 }
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/research", label: "Research" },
+  { href: "/industry4-0", label: "Industry 4.0" },
+  { href: "/labs", label: "Labs" },
+  { href: "/people", label: "People" },
+  { href: "/contact", label: "Contact" },
+];
 ---
 <nav aria-label="Primary">
+  <!-- Desktop: inline links -->
+  <ul class="nav-links nav-inline">
+    {links.map((link) => (
+      <li>
+        <a
+          class={isCurrent(link.href) ? "nav-highlight" : ""}
+          aria-current={isCurrent(link.href) ? "page" : undefined}
+          href={link.href}
+        >{link.label}</a>
+      </li>
+    ))}
+  </ul>
+  <!-- Mobile: CSS-only disclosure menu -->
+  <details class="nav-menu">
+    <summary aria-label="Open navigation menu">Menu</summary>
     <ul class="nav-links">
-        <li><a class={isCurrent("/") ? "nav-highlight" : ""} href="/">Home</a></li>
-        <li><a class={isCurrent("/projects") ? "nav-highlight" : ""} href="/projects">Projects</a></li>
-        <li><a class={isCurrent("/research") ? "nav-highlight" : ""} href="/research">Research</a></li>
-        <li><a class={isCurrent("/industry4-0") ? "nav-highlight" : ""} href="/industry4-0">Industry 4.0</a></li>
-        <li><a class={isCurrent("/people") ? "nav-highlight" : ""} href="/people">People</a></li>
-        <li><a class={isCurrent("/contact") ? "nav-highlight" : ""} href="/contact">Contact</a></li>
+      {links.map((link) => (
+        <li>
+          <a
+            class={isCurrent(link.href) ? "nav-highlight" : ""}
+            aria-current={isCurrent(link.href) ? "page" : undefined}
+            href={link.href}
+          >{link.label}</a>
+        </li>
+      ))}
     </ul>
+  </details>
 </nav>

@@ -32,3 +32,6 @@ Thumbs.db
 # IDEs
 .vscode/
 .idea/
+
+# Raw media originals (converted copies live in public/assets/photos)
+media-originals/

@@ -1,119 +1,104 @@
 # URI Industrial & Systems Engineering
 
-Public-facing website for the **University of Rhode Island Industrial & Systems Engineering (ISE)** research group, led by Dr. Manbir Sodhi. Hosted on [GitHub Pages](iseuri.org).
+**Live site: [https://www.iseuri.org/](https://www.iseuri.org/)**
+
+Public website for the **University of Rhode Island Industrial & Systems Engineering (ISE)** research group, led by Dr. Manbir Sodhi. Built with [Astro](https://astro.build/) and deployed to GitHub Pages (`uri-ise.github.io` redirects to the custom domain above).
 
 ## Description
 
-The URI ISE lab focuses on optimization, machine learning, digital-twin simulation, data pipelines, and smart manufacturing. This repository contains the static site that showcases project demos, research topics, lab spaces, team members, the Graduate Certificate in Industry 4.0, and contact information.
-
-## Key Features
-
-| Feature | Detail |
-|---------|--------|
-| **Light / Dark Theme** | Follows `prefers-color-scheme` by default; manual toggle (Auto → Light → Dark) in the footer, persisted via `localStorage`. |
-| **Progressive Web App** | Service-worker caching for offline access on the main site and the RSVP Reader demo. |
-| **Adjustable Text Size** | Five-step range slider in the footer scales the base font via CSS custom properties. |
-| **Interactive Demos** | Tower of Hanoi algorithmic solver; RSVP Speed Reader (PDF/EPUB). |
-| **Responsive Layout** | CSS Grid / Flexbox adapts from mobile to wide desktop. |
+The URI ISE lab focuses on optimization, machine learning, digital-twin simulation, data pipelines, and smart manufacturing. This repository contains the static site that showcases the lab's research topics, projects, lab spaces, team members, the Graduate Certificate in Industry 4.0, and contact information.
 
 ## Tech Stack
 
 | Layer | Detail |
 |-------|--------|
-| Markup | Semantic HTML5 |
-| Styling | CSS3 with custom properties (`:root` variables), Grid, Flexbox |
-| Scripting | Vanilla JavaScript (ES6+) |
-| Hosting | GitHub Pages — no build step for the root site |
-| PWA | `manifest.json` + `sw.js` (cache-first strategy) |
-| RSVP Reader | Pre-built Vite/React app served from `rsvp-reading/` |
+| Framework | Astro (static output, GitHub Actions build) |
+| Styling | Vanilla CSS design tokens — palette, type scale, spacing — in `src/styles/global.css`; light/dark themes, WCAG AA contrast throughout |
+| Typography | Self-hosted via Fontsource: Source Serif 4 (headings) + Inter (text) |
+| Scripting | Small inline scripts only (theme toggle, contact `mailto:` flow) |
+| SEO | `@astrojs/sitemap` + `public/robots.txt` |
+| Hosting | GitHub Pages via `.github/workflows/deploy.yml` |
 
 ## Site Map
 
 | Path | Description |
 |------|-------------|
 | `/` | Lab overview, mission, research areas |
-| `/projects.html` | Project demos and lab-built tools |
-| `/research.html` | Research topics and methods |
-| `/labs.html` | Lab spaces and locations |
-| `/people.html` | Team members and roles |
-| `/industry4-0.html` | Industry 4.0 overview, research connections, Graduate Certificate |
-| `/contact.html` | Contact form and lab-space information |
-| `/hanoi/` | Interactive Tower of Hanoi solver |
-| `/rsvp-reading/` | RSVP Speed Reader PWA |
+| `/projects` | Lab projects with figures and demo videos |
+| `/research` | Research topics and methods |
+| `/labs` | Lab spaces and locations |
+| `/people` | Team members and roles |
+| `/industry4-0` | Industry 4.0 overview and Graduate Certificate |
+| `/contact` | Contact form and lab-space information |
 
 ## Setup & Local Development
 
-No build step is required for the root site. Any static file server works:
-
 ```bash
-# Python
-python -m http.server 8000
-
-# Node
-npx serve .
+npm install
+npm run dev      # dev server at http://localhost:4321/
+npm run build    # static build to dist/
+npm run preview  # serve the production build locally
 ```
 
-Open `http://localhost:8000`. Refresh once after first load to allow the service worker to install.
+Pushing to `main` triggers the GitHub Actions workflow, which builds `dist/` and deploys it to GitHub Pages.
 
-### RSVP Reader
+## Common Maintenance Tasks
 
-The reader is a separate project whose build output is copied into `rsvp-reading/`. To update it, run `scripts/build-deploy.ps1` (edit `$basePath` for your machine first).
+### Updating the roster
 
-## Theme Switcher
+Members live in a data array at the top of `src/pages/people.astro` — edit the `sections` list (name, email, bio, photo path, optional links). Add member photos to `public/assets/photos/` as `.webp` or `.jpg`, ideally square-cropped.
 
-The site defaults to the user's OS preference via two mechanisms:
+### Adding or updating media
 
-1. **CSS fallback (no JS):** An `@media (prefers-color-scheme: dark)` block inside `:root:not([data-theme])` applies dark variables when JavaScript is unavailable.
-2. **Inline `<script>` in `<head>`:** Reads `localStorage("uri-ise-theme")` and sets `data-theme` on `<html>` before first paint — preventing a flash of the wrong theme.
+Raw originals (HEIC, MOV, full-resolution exports) go in `media-originals/`, which is **gitignored — only web-ready derivatives are committed**. Convert on macOS with the built-in tools:
 
-A footer toggle button cycles through **Auto** (system) → **Light** → **Dark**. The selection is stored in `localStorage` under `uri-ise-theme`.
+```bash
+# Photo: HEIC → JPEG, max 1600px, ~75% quality
+sips -s format jpeg -s formatOptions 75 -Z 1600 media-originals/photo.heic --out public/assets/photos/photo-name.jpg
+```
 
-All surface, text, and border colors are driven by CSS custom properties in `:root` (light defaults) and `[data-theme="dark"]` (overrides). The header, footer, and hero sections keep fixed dark backgrounds regardless of theme.
+```bash
+# Video: compress for web (target well under 10 MB per clip)
+avconvert -s media-originals/clip.mov -p PresetMediumQuality -o public/assets/photos/clip-name.mp4 --replace
+```
 
-## PWA Caching
+Name files in kebab-case, give every placed image meaningful `alt` text and a caption, and keep videos `preload="none"` with a poster image so pages load light.
 
-### Root Site (`sw.js`)
+### Adding a project
 
-Cache-first strategy. Core pages and assets are pre-cached on install:
+Projects are `<article class="project-entry">` blocks in `src/pages/projects.astro`: a kicker (category), heading, description, and a `project-media` grid of captioned figures/videos.
 
-- `index.html`, `roster.html`, `projects.html`, `contact.html`, `industry4-0.html`
-- `assets/css/style.css`, `assets/js/main.js`
+## Theme
 
-Bump `CACHE_NAME` (currently `uri-ise-static-v2`) after changing any pre-cached file.
+The site defaults to the visitor's OS color-scheme preference:
 
-### RSVP Reader (`rsvp-reading/sw.js`)
+1. **CSS fallback (no JS):** an `@media (prefers-color-scheme: dark)` block applies dark tokens when JavaScript is unavailable.
+2. **Inline `<script>` in `<head>`:** reads `localStorage("uri-ise-theme")` and sets `data-theme` on `<html>` before first paint, preventing a flash of the wrong theme.
 
-Network-first with cache fallback. Cache name: `rsvp-reader-v2`.
+A footer toggle switches light/dark, persisted under `uri-ise-theme`. All colors are driven by the custom-property tokens at the top of `src/styles/global.css`; text/background pairs are kept at ≥ 4.5:1 contrast — check any new pairs before shipping.
 
 ## Contact Routing
 
 - The site is hosted on GitHub Pages and does not run a backend mail handler.
-- Contact inquiries are currently routed from the contact page to `sodhi@uri.edu` using a `mailto:` flow.
-- The subject is prefilled in this format: `ISEURI Forward: <topic>`.
+- Contact inquiries are routed from the contact page to `sodhi@uri.edu` using a `mailto:` flow with the subject format `ISEURI Forward: <topic>`.
 - Domain-level forwarding for `iseuri.org` addresses must be configured in the external email/domain provider admin panel.
 
 ## Repo Structure
 
 ```
-├── index.html             Home page
-├── projects.html          Project demos and lab-built tools
-├── research.html          Research topics and methods
-├── labs.html              Lab spaces and locations
-├── people.html            Team members and roles
-├── contact.html           Contact form and lab info
-├── industry4-0.html       Industry 4.0 & Graduate Certificate
-├── assets/
-│   ├── css/style.css      Site-wide styles (CSS custom properties)
-│   ├── js/main.js         Theme switcher, text-size control, hero canvas
-│   └── photos/            Roster and project imagery
-├── hanoi/                 Tower of Hanoi demo
-├── rsvp-reading/          Pre-built RSVP Reader PWA
-├── scripts/
-│   └── build-deploy.ps1   RSVP Reader build/copy script
-├── manifest.json          Root-site PWA manifest
-├── sw.js                  Root-site service worker
-├── favicon.svg            Site favicon
-└── CNAME                  GitHub Pages custom domain
+├── astro.config.mjs        Site URL, sitemap integration, build format
+├── src/
+│   ├── layouts/            BaseLayout (head, fonts, header/footer, theme init)
+│   ├── components/         Header, Navigation (desktop + mobile menu), Footer
+│   ├── pages/              One .astro file per route
+│   └── styles/global.css   Design tokens + site-wide styles
+├── public/
+│   ├── assets/photos/      Web-ready roster, lab, and project media
+│   ├── favicon.svg         Site favicon
+│   ├── robots.txt          Crawl policy + sitemap pointer
+│   └── CNAME               GitHub Pages custom domain
+├── media-originals/        Raw media (gitignored — see Media workflow)
+└── .github/workflows/      GitHub Pages deploy workflow
 ```
 
 ## Maintainers

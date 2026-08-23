@@ -6,6 +6,12 @@ import Navigation from "./Navigation.astro";
         <div class="brand">
             <a href="/">URI Industrial & Systems Engineering</a>
         </div>
-        <Navigation />
+        <div class="nav-cluster">
+            <Navigation />
+            <button type="button" class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle color theme" title="Toggle color theme">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor" stroke="none"/></svg>
+                <span>Theme</span>
+            </button>
+        </div>
     </div>
 </header>

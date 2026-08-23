@@ -2,7 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="URI ISE | Contact">
+<BaseLayout
+  title="URI ISE | Contact"
+  description="Contact the URI Industrial & Systems Engineering Group about research partnerships, the Industry 4.0 Graduate Certificate, or joining the lab."
+>
   <section class="page-header section-compact">
     <div class="container">
       <h1>Contact Us</h1>
@@ -10,28 +13,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- ===== Main Contact Content ===== -->
   <section class="section section-compact">
     <div class="container">
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
-        
-        <!-- Contact Form Card -->
+      <div class="contact-layout">
+
         <article class="contact-card">
           <h3>Send a Message</h3>
           <p>
             Interested in research collaboration, the Industry 4.0 Certificate, or learning more about our lab? Reach out.
           </p>
-          <p style="margin-top: 0.75rem; color: var(--text-muted);">
-            All inquiries are currently forwarded to sodhi@uri.edu.
-          </p>
           <form id="contact-form">
-            <label for="name" class="visually-hidden" style="display:none;">Name</label>
+            <label for="name" class="visually-hidden">Name</label>
             <input type="text" id="name" name="name" placeholder="Your Name" required />
 
-            <label for="email" class="visually-hidden" style="display:none;">Email</label>
+            <label for="email" class="visually-hidden">Email</label>
             <input type="email" id="email" name="email" placeholder="Your Email Address" required />
 
-            <label for="subject" class="visually-hidden" style="display:none;">Subject</label>
+            <label for="subject" class="visually-hidden">Subject</label>
             <select id="subject" name="subject" required>
               <option value="" disabled selected>Topic of Inquiry</option>
               <option value="research">Research Partnerships</option>
@@ -40,53 +38,35 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <option value="other">Other</option>
             </select>
 
-            <label for="message" class="visually-hidden" style="display:none;">Message</label>
+            <label for="message" class="visually-hidden">Message</label>
             <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
 
-            <button type="submit" class="button primary">Submit Inquiry</button>
+            <button type="submit" class="button primary">Compose Email</button>
           </form>
-          <p style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem;">
-            Your email client will open with the subject format: ISEURI Forward: Topic.
+          <p>
+            Submitting opens your email client with the message pre-filled for sodhi@uri.edu —
+            nothing is sent until you press send there.
           </p>
         </article>
-      </div>
-    </div>
-  </section>
 
-  <section class="section section-compact">
-    <div class="container">
-      <div class="section-header">
-        <h2>Lab Environments</h2>
-        <p>Four working spaces across the URI ISE group.</p>
-      </div>
-      <div class="lab-rooms contact-labs-grid">
-        <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/capstone-demo-day.jpg" alt="Students gathered around testbed equipment during a demo day in the capstone room" />
-          <h3>Capstone Room</h3>
-          <p class="lab-meta">FCAE 180A · Kingston, RI 02881</p>
-          <p>Primary Industry 4.0 testbed for capstone projects and research, featuring collaborative robotics, integrated CNC capabilities, and dynamic automation.</p>
+        <article class="contact-card">
+          <h3>Direct Contact</h3>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Lab Director</span>
+            <p>Dr. Manbir Sodhi</p>
+            <a href="mailto:sodhi@uri.edu">sodhi@uri.edu</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Department</span>
+            <a href="https://web.uri.edu/mcise/" target="_blank" rel="noopener noreferrer">Mechanical, Industrial &amp; Systems Engineering</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Location</span>
+            <p>Fascitelli Center for Advanced Engineering (FCAE) 180A<br />Kingston, RI 02881</p>
+            <a href="https://web.uri.edu/engineering/about/facilities/" target="_blank" rel="noopener">View campus facilities</a>
+          </div>
         </article>
-        <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/kirk-uri.png" alt="KIRK Resources Building" />
-          <h3>Vehicular Vision &amp; Tracking Lab</h3>
-          <p class="lab-meta">KIRK Resources · Kingston, RI 02881</p>
-          <p>Houses vision-focused research alongside higher-powered laser cutting and 3-D printing resources used across multiple lab projects.</p>
-        </article>
-        <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/fcae-uri.png" alt="Fascitelli Center for Advanced Engineering" />
-          <h3>Graduate Lounge</h3>
-          <p class="lab-meta">FCAE, Floor 2 · Kingston, RI 02881</p>
-          <p>Collaborative workspace for graduate students focused on writing, analysis, and project coordination.</p>
-        </article>
-        <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/testbedclean.jpg" alt="URI ISE lab support and equipment area" />
-          <h3>Lab Support Room</h3>
-          <p class="lab-meta">FCAE · Kingston, RI 02881</p>
-          <p>Additional workspace and storage supporting ongoing testbed research, equipment maintenance, and build preparation.</p>
-        </article>
-      </div>
-      <div class="section-cta">
-        <a class="button secondary" href="https://web.uri.edu/engineering/about/facilities/" target="_blank" rel="noopener">View Campus Map &rarr;</a>
+
       </div>
     </div>
   </section>

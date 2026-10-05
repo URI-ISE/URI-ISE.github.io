@@ -1,119 +1,242 @@
 ---
+/*
+ * Research page — a compact box of the six research threads, then the project write-ups with a tag filter.
+ * Projects appear in a random order on every visit (alphabetical by title without JavaScript).
+ * To edit:
+ *   - Thread names/summaries and the approved tag list: src/data/tags.ts
+ *   - Projects: one Markdown file each in src/content/projects/ (see CONTRIBUTING.md)
+ * The old /projects URL redirects here (astro.config.mjs).
+ */
+import { getCollection, getEntries, getEntry, render } from "astro:content";
+import { Image, getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Shuffle from "../components/Shuffle.astro";
+import { THREADS, isThread, tagLabel } from "../data/tags";
+
+const projects = (
+  await getCollection("projects", ({ data }) => !(import.meta.env.PROD && data.draft))
+).sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const escapeHtml = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const noteHtml = (s: string) => escapeHtml(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+const entries = await Promise.all(
+  projects.map(async (project) => {
+    const researcher = project.data.researcher ? await getEntry(project.data.researcher) : undefined;
+    const supporting = await getEntries(project.data.supporting);
+    if ((project.data.researcher && !researcher) || supporting.some((person) => !person)) {
+      throw new Error(`Unknown person in "researcher" or "supporting" of src/content/projects/${project.id}.md — use file names from src/content/people/ (without .md).`);
+    }
+    const isVisible = (person: (typeof supporting)[number]) => !!person && !(import.meta.env.PROD && person.data.draft);
+    const media = await Promise.all(
+      project.data.media.map(async (item) => ({
+        ...item,
+        posterSrc: item.poster ? (await getImage({ src: item.poster, width: 960, format: "jpg" })).src : undefined,
+      })),
+    );
+    const { Content } = await render(project);
+    return {
+      project,
+      Content,
+      media,
+      researcher: isVisible(researcher) ? researcher : undefined,
+      supporting: supporting.filter(isVisible),
+      threadTags: project.data.tags.filter(isThread),
+      otherTags: project.data.tags.filter((tag) => !isThread(tag)),
+    };
+  }),
+);
+
+const countFor = (slug: string) => projects.filter((p) => (p.data.tags as string[]).includes(slug)).length;
 ---
 
 <BaseLayout
-  title="URI ISE | Research Topics"
-  description="Six integrated research threads at the URI ISE Group: digital twins, smart manufacturing and CNC, optimization, machine vision, industrial data systems, and resilient cyber-physical systems."
+  title="URI ISE | Research"
+  description="Research at the URI ISE Group: six threads from digital twins to resilient cyber-physical systems, plus the lab-built projects behind them, filterable by topic."
 >
   <section class="page-header section-compact">
     <div class="container">
-      <p class="tagline">Six integrated research threads</p>
-      <h1>Research Topics</h1>
+      <p class="tagline">Algorithm to Action</p>
+      <h1>Research</h1>
       <p>
-        The lab’s research spans algorithms, simulation, machine vision, industrial data systems, and resilient cyber-physical systems.
+        Working hardware and real experiments across six research threads — from digital twins to resilient
+        cyber-physical systems — many growing out of the <a href="/industry4-0#certificate">Industry 4.0 certificate</a>
+        coursework. Filter the projects by thread or hashtag.
       </p>
-      <div class="page-header-media">
-        <figure class="site-figure">
-          <video class="page-header-img" controls muted loop playsinline preload="none" poster="/assets/photos/uri-robotvid-poster.jpg">
-            <source src="/assets/photos/uri-robotvid.mp4" type="video/mp4" />
-          </video>
-          <figcaption>A collaborative robot cell on the lab's manufacturing testbed.</figcaption>
-        </figure>
+
+      <div class="thread-box" id="threads">
+        <h2>Research Threads</h2>
+        <ul class="thread-list">
+          {THREADS.map((thread) => {
+            const count = countFor(thread.slug);
+            return (
+              <li id={thread.slug}>
+                <h3>
+                  {count > 0 ? (
+                    <a href={`/research?tag=${thread.slug}#projects`} data-filter-tag={thread.slug}>{thread.label}</a>
+                  ) : (
+                    thread.label
+                  )}
+                </h3>
+                <p>{thread.summary}</p>
+                <span class="thread-count">{count === 0 ? "No projects yet" : count === 1 ? "1 project" : `${count} projects`}</span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="section section-compact">
+  <section class="section section-compact" id="projects">
     <div class="container">
       <div class="section-header">
-        <h2>Research Threads</h2>
-        <p>Deep dives into the problems and methods that drive the lab.</p>
+        <h2>Projects</h2>
+        <p>Applied systems built and studied in the lab.</p>
       </div>
 
-      <div class="research-rows">
-        <article class="research-row">
-          <div class="research-row-label">Digital Twins</div>
-          <div class="research-row-body">
-            <h3>Simulation, Validation &amp; Chaos Engineering</h3>
-            <p>High-fidelity digital twins built on ROS 2 and Unity let us validate control logic, inject faults, and stress-test cyber-physical systems before deployment — bridging the sim-to-real gap for robotic workcells and logistics hubs.</p>
-            <ul>
-              <li>ROS 2 / Gazebo hardware-in-the-loop testbeds</li>
-              <li>Unity-based 3-D visualization dashboards</li>
-              <li>Automated fault-injection and recovery scoring</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="research-row">
-          <div class="research-row-label">Smart Mfg &amp; CNC</div>
-          <div class="research-row-body">
-            <h3>Intelligent Machining &amp; Tooling</h3>
-            <p>We develop GCode interception and validation pipelines for CNC systems and produce custom tooling on our in-house machines, closing the loop between digital design and physical production.</p>
-            <ul>
-              <li>Real-time GCode validation for CNC machining</li>
-              <li>Custom tooling fabrication and rapid iteration</li>
-              <li>Sensor-rich machine monitoring</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="research-row">
-          <div class="research-row-label">Optimization</div>
-          <div class="research-row-body">
-            <h3>Scheduling, Coordination &amp; Process Control</h3>
-            <p>From job-shop scheduling to multi-agent coordination in smart factory layouts, our algorithms minimize cycle time and energy use while meeting throughput targets.</p>
-            <ul>
-              <li>Deep reinforcement learning for production scheduling</li>
-              <li>Genetic ML algorithms for process optimization</li>
-              <li>Multi-agent coordination in flexible workcells</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="research-row">
-          <div class="research-row-label">Vision &amp; QC</div>
-          <div class="research-row-body">
-            <h3>Computer Vision for Quality Control</h3>
-            <p>We build computer vision systems that inspect parts in real time, catching defects at the point of manufacture and feeding data back into process-control loops.</p>
-            <ul>
-              <li>Defect detection via convolutional neural networks</li>
-              <li>Camera-guided robotic pick-and-place</li>
-              <li>Dimensional measurement and tolerance verification</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="research-row">
-          <div class="research-row-label">Data &amp; IIoT</div>
-          <div class="research-row-body">
-            <h3>Data Pipelines &amp; the Industrial Internet of Things</h3>
-            <p>Sensor data flows from PLCs, conveyors, and robotic arms into pipelines that clean, transform, and visualize operational metrics — providing the data layer that makes Industry 4.0 possible.</p>
-            <ul>
-              <li>End-to-end data pipeline design for manufacturing testbeds</li>
-              <li>SCADA and OPC-UA integration</li>
-              <li>Real-time dashboards and anomaly alerting</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="research-row">
-          <div class="research-row-label">Cyber-Physical</div>
-          <div class="research-row-body">
-            <h3>Resilient Cyber-Physical Systems</h3>
-            <p>Our testbed automation work ensures that cyber-physical systems remain operational under adverse conditions — validating edge-first architectures for contested and degraded environments.</p>
-            <ul>
-              <li>Automated testbed provisioning and orchestration</li>
-              <li>Edge inference under intermittent connectivity</li>
-              <li>MANET routing and zero-knowledge identity verification</li>
-            </ul>
-          </div>
-        </article>
+      <div class="tag-filter" data-filter role="group" aria-label="Filter projects by research thread" hidden>
+        <button type="button" class="tag-chip" data-filter-tag="" aria-pressed="true">
+          All <span class="tag-count">{projects.length}</span>
+        </button>
+        {THREADS.map((thread) => (
+          <button type="button" class="tag-chip" data-filter-tag={thread.slug} aria-pressed="false" disabled={countFor(thread.slug) === 0}>
+            {thread.label} <span class="tag-count">{countFor(thread.slug)}</span>
+          </button>
+        ))}
+        <button type="button" class="tag-chip" data-filter-extra aria-pressed="true" hidden></button>
       </div>
+      <p class="filter-status" data-filter-status aria-live="polite"></p>
 
-      <div class="section-cta">
-        <a class="button secondary" href="/projects">View Projects &rarr;</a>
+      <div class="project-list" data-shuffle>
+      {entries.map(({ project, Content, media, researcher, supporting, threadTags, otherTags }) => (
+        <article class="project-entry" id={project.id} data-tags={project.data.tags.join(" ")}>
+          <span class="project-kicker">{project.data.kicker}</span>
+          <h2>{project.data.title}</h2>
+          {researcher && (
+            <p class="project-researcher">
+              Primary researcher: <a href={`/people#${researcher.id}`}>{researcher.data.name}</a>
+              {supporting.length > 0 && (
+                <>
+                  <span class="project-researcher-sep" aria-hidden="true"> · </span>
+                  Supporting:{" "}
+                  {supporting.map((person, i) => (
+                    <>{i > 0 && ", "}<a href={`/people#${person!.id}`}>{person!.data.name}</a></>
+                  ))}
+                </>
+              )}
+            </p>
+          )}
+          <Content />
+          {project.data.note && <p class="project-note" set:html={noteHtml(project.data.note)} />}
+          <ul class="tag-list" aria-label="Tags">
+            {[...threadTags, ...otherTags].map((tag) => (
+              <li>
+                <a class={isThread(tag) ? "tag tag-thread" : "tag"} href={`/research?tag=${tag}#projects`} data-filter-tag={tag}>
+                  {tagLabel(tag)}
+                </a>
+              </li>
+            ))}
+          </ul>
+          {media.length > 0 && (
+            <div class="project-media">
+              {media.map((item) => (
+                <figure class={item.portrait ? "project-figure project-figure-portrait" : "project-figure"}>
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      width={1200}
+                      widths={[480, 800, 1200]}
+                      sizes="(min-width: 1120px) 360px, (min-width: 700px) 50vw, 100vw"
+                      quality={70}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <video
+                      controls
+                      muted
+                      playsinline
+                      preload="none"
+                      poster={item.posterSrc}
+                      width={item.poster?.width}
+                      height={item.poster?.height}
+                    >
+                      <source src={item.video} type="video/mp4" />
+                    </video>
+                  )}
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
       </div>
+      <Shuffle />
+
+      <p class="filter-empty" data-filter-empty hidden>
+        No project write-ups carry this tag yet. <a href="/research#projects" data-filter-tag="">Show all projects</a>.
+      </p>
     </div>
   </section>
+
 </BaseLayout>
+
+<script>
+  // Progressive enhancement: without JS every project shows and tag links just reload the page.
+  document.addEventListener("astro:page-load", () => {
+    const bar = document.querySelector<HTMLElement>("[data-filter]");
+    if (!bar) return;
+    bar.hidden = false;
+
+    const projects = [...document.querySelectorAll<HTMLElement>(".project-entry[data-tags]")];
+    const chips = [...bar.querySelectorAll<HTMLButtonElement>(".tag-chip[data-filter-tag]")];
+    const extraChip = bar.querySelector<HTMLButtonElement>("[data-filter-extra]")!;
+    const status = document.querySelector<HTMLElement>("[data-filter-status]")!;
+    const empty = document.querySelector<HTMLElement>("[data-filter-empty]")!;
+    const section = document.getElementById("projects")!;
+    const known = new Set(projects.flatMap((p) => p.dataset.tags!.split(" ")));
+    chips.forEach((chip) => known.add(chip.dataset.filterTag!));
+
+    const labelFor = (tag: string) =>
+      chips.find((c) => c.dataset.filterTag === tag)?.firstChild?.textContent?.trim() ?? `#${tag}`;
+
+    function apply(requested: string) {
+      const tag = known.has(requested) ? requested : "";
+      let shown = 0;
+      for (const project of projects) {
+        const match = !tag || project.dataset.tags!.split(" ").includes(tag);
+        project.hidden = !match;
+        if (match) shown++;
+      }
+      chips.forEach((chip) => chip.setAttribute("aria-pressed", String(chip.dataset.filterTag === tag)));
+      const isThreadChip = chips.some((c) => c.dataset.filterTag === tag);
+      extraChip.hidden = !tag || isThreadChip;
+      extraChip.textContent = `#${tag} ×`;
+      extraChip.setAttribute("aria-label", `#${tag} — clear filter`);
+      status.textContent = tag
+        ? `Showing ${shown} of ${projects.length} projects tagged ${labelFor(tag)}.`
+        : "";
+      empty.hidden = shown > 0;
+
+      const url = new URL(location.href);
+      if (tag) url.searchParams.set("tag", tag);
+      else url.searchParams.delete("tag");
+      // Keep history.state: Astro's ClientRouter ignores entries whose state is null.
+      history.replaceState(history.state, "", url);
+    }
+
+    document.querySelectorAll<HTMLElement>("[data-filter-tag]").forEach((el) => {
+      el.addEventListener("click", (event) => {
+        event.preventDefault();
+        apply(el.dataset.filterTag!);
+        if (!bar.contains(el)) section.scrollIntoView({ block: "start" });
+      });
+    });
+    extraChip.addEventListener("click", () => apply(""));
+
+    apply(new URL(location.href).searchParams.get("tag") ?? "");
+  });
+</script>

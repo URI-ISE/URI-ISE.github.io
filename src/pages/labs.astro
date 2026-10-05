@@ -1,5 +1,14 @@
 ---
+/*
+ * Labs page — the four lab spaces are written inline below.
+ * Photos live in src/assets/photos/ and are imported at the top of this file.
+ */
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import capstonePhoto from "../assets/photos/capstone-demo-day.jpg";
+import kirkPhoto from "../assets/photos/kirk-uri.png";
+import fcaePhoto from "../assets/photos/fcae-uri.png";
+import supportRoomPhoto from "../assets/photos/juan-lopez-working.jpg";
 ---
 
 <BaseLayout
@@ -24,25 +33,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
       <div class="lab-rooms">
         <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/capstone-demo-day.jpg" alt="Students gathered around testbed equipment during a demo day in the capstone room" />
+          <Image class="lab-room-img" src={capstonePhoto} alt="Students gathered around testbed equipment during a demo day in the capstone room" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" loading="eager" />
           <h3>Capstone Room</h3>
           <p class="lab-meta">FCAE 180A · Kingston, RI 02881</p>
           <p>Primary Industry 4.0 testbed for capstone projects and research, featuring collaborative robotics, integrated CNC capabilities, and dynamic automation.</p>
         </article>
         <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/kirk-uri.png" alt="KIRK Resources Building" loading="lazy" />
+          <Image class="lab-room-img" src={kirkPhoto} alt="KIRK Resources Building" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
           <h3>Vehicular Vision &amp; Tracking Lab</h3>
           <p class="lab-meta">KIRK Resources · Kingston, RI 02881</p>
           <p>Houses vision-focused research alongside higher-powered laser cutting and 3-D printing resources used across multiple lab projects.</p>
         </article>
         <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/fcae-uri.png" alt="Fascitelli Center for Advanced Engineering" loading="lazy" />
+          <Image class="lab-room-img" src={fcaePhoto} alt="Fascitelli Center for Advanced Engineering" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
           <h3>Graduate Lounge</h3>
           <p class="lab-meta">FCAE, Floor 2 · Kingston, RI 02881</p>
           <p>Collaborative workspace for graduate students — writing, analysis, and project coordination.</p>
         </article>
         <article class="lab-room">
-          <img class="lab-room-img" src="/assets/photos/juan-lopez-working.jpg" alt="Student working at a multi-monitor workstation beside research posters" loading="lazy" />
+          <Image class="lab-room-img" src={supportRoomPhoto} alt="Student working at a multi-monitor workstation beside research posters" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
           <h3>Lab Support Room</h3>
           <p class="lab-meta">FCAE · Kingston, RI 02881</p>
           <p>Additional workspace and storage supporting ongoing testbed research and equipment maintenance.</p>

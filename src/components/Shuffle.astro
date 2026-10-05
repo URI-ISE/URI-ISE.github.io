@@ -1,0 +1,18 @@
+---
+/*
+ * Shuffles the children of every [data-shuffle] element into a random order (Fisher–Yates).
+ * Place it right after the shuffled markup: it runs before first paint, and data-astro-rerun makes it
+ * run again on every client-side visit. Without JavaScript the server order is kept.
+ */
+---
+
+<script is:inline data-astro-rerun>
+  document.querySelectorAll("[data-shuffle]").forEach((list) => {
+    const items = [...list.children];
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    list.append(...items);
+  });
+</script>

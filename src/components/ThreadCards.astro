@@ -1,0 +1,23 @@
+---
+/*
+ * The six research-thread cards (home and Industry 4.0 pages).
+ * Card text and icons come from src/data/tags.ts — edit them there, not here.
+ */
+import { THREADS } from "../data/tags";
+
+interface Props {
+  iconSize?: number;
+}
+
+const { iconSize = 28 } = Astro.props;
+---
+
+<div class="card-grid card-grid-3x2">
+  {THREADS.map((thread) => (
+    <article class="card icon-card">
+      <svg class="icon-card-icon" xmlns="http://www.w3.org/2000/svg" width={iconSize} height={iconSize} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><Fragment set:html={thread.icon} /></svg>
+      <h3><a class="card-link" href={`/research?tag=${thread.slug}#projects`}>{thread.label}</a></h3>
+      <p>{thread.summary}</p>
+    </article>
+  ))}
+</div>

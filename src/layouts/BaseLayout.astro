@@ -5,21 +5,50 @@ import "@fontsource-variable/source-serif-4";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { cleanPath } from "../utils/paths";
 
 export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  /** Keep this page out of search results (used by the 404 page). */
+  noindex?: boolean;
 }
 
 const {
   title = "URI Industrial & Systems Engineering",
   description = "The URI ISE Group develops optimization algorithms, machine-learning models, digital-twin simulations, and data-driven pipelines.",
-  image = "/assets/photos/uri-testbed.webp",
+  image = "/assets/og-default.jpg",
+  noindex = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pagePath = cleanPath(Astro.url.pathname);
+const canonicalURL = new URL(pagePath, Astro.site);
 const imageURL = new URL(image, Astro.site);
+
+// Structured data so search engines know who runs the site (home page only).
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "ResearchOrganization",
+  name: "URI Industrial & Systems Engineering Group",
+  alternateName: "URI ISE Group",
+  url: "https://www.iseuri.org/",
+  description,
+  email: "sodhi@uri.edu",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Fascitelli Center for Advanced Engineering, 2 East Alumni Avenue",
+    addressLocality: "Kingston",
+    addressRegion: "RI",
+    postalCode: "02881",
+    addressCountry: "US",
+  },
+  parentOrganization: {
+    "@type": "CollegeOrUniversity",
+    name: "University of Rhode Island",
+    url: "https://www.uri.edu",
+  },
+};
 ---
 
 <!DOCTYPE html>
@@ -30,6 +59,7 @@ const imageURL = new URL(image, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex" />}
 
     <!-- Open Graph tags for Social Proof/Sharing -->
     <meta property="og:title" content={title} />
@@ -46,6 +76,7 @@ const imageURL = new URL(image, Astro.site);
     <meta name="twitter:image" content={imageURL} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {pagePath === "/" && <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />}
     <meta name="theme-color" content="#1d2733" />
 
     <ClientRouter />

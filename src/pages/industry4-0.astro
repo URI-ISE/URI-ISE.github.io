@@ -1,5 +1,14 @@
 ---
+/*
+ * Industry 4.0 page — overview, thread cards, and the Graduate Certificate details, written inline below.
+ * The six thread cards come from src/data/tags.ts (via components/ThreadCards.astro).
+ * Photos live in src/assets/photos/ and are imported at the top of this file.
+ */
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import niryoPhoto from "../assets/photos/uri-niryorobot.webp";
+import statehousePhoto from "../assets/photos/cypherstatehouseaction.jpg";
+import ThreadCards from "../components/ThreadCards.astro";
 ---
 
 <BaseLayout
@@ -20,7 +29,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             autonomously, driving greater efficiency, productivity, and competitiveness in the global market.
           </p>
         </div>
-        <img src="/assets/photos/uri-niryorobot.webp" alt="Niryo Ned2 robot in the URI testbed" class="intro-image" loading="lazy" />
+        <Image src={niryoPhoto} alt="Niryo Ned2 robot in the URI testbed" class="intro-image" width={640} widths={[320, 640]} sizes="(min-width: 800px) 320px, 100vw" loading="eager" />
       </div>
     </div>
   </section>
@@ -32,38 +41,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p>Industry 4.0 isn't a single project — it's the thread that runs through everything we do.</p>
       </div>
 
-      <div class="card-grid card-grid-3x2">
-                <article class="card icon-card">
-                    <svg class="icon-card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h.01"/><path d="M17 7h.01"/><path d="M7 17h.01"/><path d="M17 17h.01"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
-                    <h3>Digital Twins</h3>
-                    <p>High-fidelity simulation environments for testing, validation, and chaos engineering of industrial systems.</p>
-                </article>
-                <article class="card icon-card">
-                    <svg class="icon-card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13.5 8.5-5 5"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                    <h3>Smart Mfg &amp; CNC</h3>
-                    <p>GCode interception, sensor-rich machining, and custom tooling fabrication on in-house equipment.</p>
-                </article>
-                <article class="card icon-card">
-                    <svg class="icon-card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-                    <h3>Optimization</h3>
-                    <p>Production scheduling, multi-agent coordination, and genetic ML algorithms for process control.</p>
-                </article>
-                <article class="card icon-card">
-                    <svg class="icon-card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-                    <h3>Vision &amp; QC</h3>
-                    <p>Computer vision for real-time defect detection, dimensional measurement, and robotic pick-and-place.</p>
-                </article>
-                <article class="card icon-card">
-                    <svg class="icon-card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
-                    <h3>Data &amp; IIoT</h3>
-                    <p>End-to-end sensor data pipelines, SCADA integration, and real-time operational dashboards.</p>
-                </article>
-                <article class="card icon-card">
-                    <svg class="icon-card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    <h3>Cyber-Physical</h3>
-                    <p>Resilient edge architectures, testbed orchestration, and secure operation under degraded connectivity.</p>
-                </article>
-      </div>
+      <ThreadCards iconSize={32} />
       <div class="section-cta">
         <a class="button secondary" href="/research">Explore Our Research &rarr;</a>
       </div>
@@ -78,7 +56,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
 
       <div class="section-media">
-        <img src="/assets/photos/cypherstatehouseaction.jpg" alt="Students in action presenting Industry 4.0 projects" class="page-header-img" loading="lazy" />
+        <Image src={statehousePhoto} alt="Students in action presenting Industry 4.0 projects" class="page-header-img" width={1520} widths={[760, 1520]} sizes="(min-width: 800px) 760px, 100vw" />
       </div>
 
       <div class="card-grid section-media">

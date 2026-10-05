@@ -1,14 +1,15 @@
 ---
+// Site footer. Keep `footer-links` in step with the nav links in Navigation.astro.
+const year = new Date().getFullYear();
 ---
 <footer>
     <div class="container">
         <div class="footer-content">
-            <p>© 2026 University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
+            <p>© {year} University of Rhode Island Industrial & Systems Engineering Group. All rights reserved.</p>
             <p><a href="https://web.uri.edu/mcise/" target="_blank" rel="noopener noreferrer">URI Department of Mechanical, Industrial & Systems Engineering</a></p>
             <div class="footer-links">
                 <a href="/">Home</a>
-                <a href="/projects">Projects</a>
-                <a href="/research">Research Topics</a>
+                <a href="/research">Research</a>
                 <a href="/people">People</a>
                 <a href="/labs">Labs</a>
                 <a href="/industry4-0">Industry 4.0</a>

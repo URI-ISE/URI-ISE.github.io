@@ -1,0 +1,22 @@
+---
+/*
+ * 404 page — GitHub Pages serves dist/404.html for any URL that doesn't exist.
+ * Kept out of search results (noindex) and out of the sitemap.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="URI ISE | Page not found" description="This page could not be found." noindex>
+  <section class="page-header section-compact">
+    <div class="container">
+      <p class="tagline">404</p>
+      <h1>Page not found</h1>
+      <p>The page you were looking for has moved or no longer exists. Try one of these instead:</p>
+      <div class="hero-actions">
+        <a class="button primary" href="/research">Research &amp; Projects</a>
+        <a class="button secondary" href="/people">People</a>
+        <a class="button secondary" href="/contact">Contact</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

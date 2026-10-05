@@ -1,17 +1,15 @@
 ---
-const currentPath = Astro.url.pathname;
+// Primary navigation (desktop links + mobile menu). To add or reorder a page, edit `links` below.
+import { cleanPath } from "../utils/paths";
+
+const currentPath = cleanPath(Astro.url.pathname);
 
 function isCurrent(path: string) {
-  // Strip trailing slash if not root
-  const url = currentPath.endsWith('/') && currentPath !== '/'
-    ? currentPath.slice(0, -1)
-    : currentPath;
-  return url === path;
+  return currentPath === path;
 }
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
   { href: "/research", label: "Research" },
   { href: "/industry4-0", label: "Industry 4.0" },
   { href: "/labs", label: "Labs" },

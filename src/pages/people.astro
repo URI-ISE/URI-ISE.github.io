@@ -1,160 +1,34 @@
 ---
+/*
+ * People page — built from one Markdown file per member in src/content/people/.
+ * To add or edit a member, edit their file (see CONTRIBUTING.md); section headings live in src/data/tags.ts.
+ * Cards are shuffled into a random order within each section on every page load
+ * (alphabetical by last name when JavaScript is off).
+ */
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Shuffle from "../components/Shuffle.astro";
+import { SECTIONS, SECTION_HEADINGS } from "../data/tags";
 
-interface MemberLink {
-  label: string;
-  href: string;
-}
+const people = await getCollection("people", ({ data }) => !(import.meta.env.PROD && data.draft));
 
-interface Member {
-  name: string;
-  photo: string;
-  email: string;
-  role?: string;
-  bio: string;
-  links?: MemberLink[];
-}
+const nameWords = (name: string) => name.replace(/^Dr\.?\s+/, "").split(/\s+/);
+const sortKey = (p: (typeof people)[number]) =>
+  (p.data.sortName ?? nameWords(p.data.name).at(-1) ?? p.data.name).toLowerCase();
+const initials = (p: (typeof people)[number]) => {
+  const words = nameWords(p.data.name);
+  const last = p.data.sortName?.split(/\s+/)[0] ?? words.at(-1) ?? "";
+  return `${words[0]?.[0] ?? ""}${last[0] ?? ""}`.toUpperCase();
+};
 
-interface Section {
-  heading: string;
-  large?: boolean;
-  members: Member[];
-}
-
-const sections: Section[] = [
-  {
-    heading: "Principal Advisor",
-    large: true,
-    members: [
-      {
-        name: "Dr. Manbir Sodhi",
-        photo: "/assets/photos/manbir-sodhi.webp",
-        role: "Professor & Lab Director",
-        email: "sodhi@uri.edu",
-        bio: "Leads industry & systems engineering and strategic industry partnerships.",
-        links: [
-          { label: "Google Scholar", href: "https://scholar.google.com/citations?user=kI1Mg1MAAAAJ&hl=en&oi=sra" },
-          { label: "GitHub Profile", href: "https://github.com/sodhims" },
-        ],
-      },
-    ],
-  },
-  {
-    heading: "Post-Doctoral Fellow",
-    members: [
-      {
-        name: "Dr. Romesh Prasad",
-        photo: "/assets/photos/romesh-prasad.webp",
-        email: "romeshsatish.prasad@uri.edu",
-        bio: "Focuses on digital twin and machine learning applications in manufacturing.",
-        links: [
-          { label: "Google Scholar", href: "https://scholar.google.com/citations?user=VDbBU3kAAAAJ&hl=en" },
-          { label: "GitHub Profile", href: "https://github.com/romeshprasad" },
-        ],
-      },
-    ],
-  },
-  {
-    heading: "Doctoral Students",
-    members: [
-      {
-        name: "Steven Blum",
-        photo: "/assets/photos/steven-blum.webp",
-        email: "steven.blum@uri.edu",
-        bio: "Optimization and scheduling integration with personalized user workflows.",
-        links: [
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/steven-blum-93523068/" },
-          { label: "GitHub Profile", href: "https://github.com/stevenblum" },
-        ],
-      },
-      {
-        name: "Stephen Eacuello",
-        photo: "/assets/photos/stephen-eacuello.webp",
-        email: "seacuello@uri.edu",
-        bio: "Develops GCode interception and validation for CNC machining systems.",
-        links: [
-          { label: "Google Scholar", href: "https://scholar.google.com/citations?user=PjOwd54AAAAJ&hl=en&oi=sra" },
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/stephen-salvatore-eacuello-a2a92242/" },
-          { label: "GitHub Profile", href: "https://github.com/stephenseacuello" },
-        ],
-      },
-    ],
-  },
-  {
-    heading: "Masters Students",
-    members: [
-      {
-        name: "Luke Pepin",
-        photo: "/assets/photos/luke-pepin.webp",
-        email: "luke.pepin@uri.edu",
-        bio: "Automation for resilient cyber-physical systems for testbeds.",
-        links: [
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/luke-pepin/" },
-          { label: "GitHub Profile", href: "https://github.com/LukePepin" },
-        ],
-      },
-      {
-        name: "Andrew Muszynski",
-        photo: "/assets/photos/andrew-muszynski.webp",
-        email: "muszynskiandrew@uri.edu",
-        bio: "Optimizes multi-agent coordination in smart factory layouts.",
-        links: [
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/andrew-muszynski-2b3217223/" },
-        ],
-      },
-      {
-        name: "Jay-Sun Rutledge",
-        photo: "/assets/photos/jay-sun-rutledge.webp",
-        email: "jaysun_rutledge@uri.edu",
-        bio: "Builds computer vision systems for manufacturing quality control.",
-        links: [
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/jay-sun-rutledge-254926259/" },
-          { label: "GitHub Profile", href: "https://github.com/jaysunrutledge7" },
-        ],
-      },
-      {
-        name: "Seun Filaoye",
-        photo: "/assets/photos/seun-filaoye.webp",
-        email: "filaoye15@uri.edu",
-        bio: "Designs administrative systems for manufacturing testbeds.",
-      },
-      {
-        name: "Seamus O'Keefe",
-        photo: "/assets/photos/seamus-okeefe.JPG",
-        email: "seamus.okeefe@uri.edu",
-        bio: "Developing cost optimization strategy through simulation.",
-        links: [
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/seamus-o-keefe/" },
-          { label: "GitHub Profile", href: "https://github.com/okeefeseamus-stack" },
-        ],
-      },
-    ],
-  },
-  {
-    heading: "Undergraduate Researchers",
-    members: [
-      {
-        name: "Andrew Oxley",
-        photo: "/assets/photos/andrew-oxley.webp",
-        email: "andrew_oxley@uri.edu",
-        bio: "CNC manufacturing and associated data collection.",
-        links: [
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/andrew-o-a37509277/" },
-          { label: "GitHub Profile", href: "https://github.com/0xley" },
-        ],
-      },
-      {
-        name: "Juan Lopez",
-        photo: "/assets/photos/juan-lopez.webp",
-        email: "juan.lopez@uri.edu",
-        bio: "Builds data pipelines for the manufacturing testbed in accordance with Industry 4.0.",
-        links: [
-          { label: "GitHub Profile", href: "https://github.com/juanlopez-gif" },
-        ],
-      },
-    ],
-  },
-];
+const sections = SECTIONS.map((section) => ({
+  heading: SECTION_HEADINGS[section],
+  large: section === "advisor",
+  members: people
+    .filter((p) => p.data.section === section)
+    .sort((a, b) => sortKey(a).localeCompare(sortKey(b))),
+})).filter((section) => section.members.length > 0);
 ---
 
 <BaseLayout
@@ -173,18 +47,32 @@ const sections: Section[] = [
       {sections.map((section) => (
         <div class="profile-section">
           <h2>{section.heading}</h2>
-          <div class={section.members.length > 1 ? "card-grid" : ""}>
+          <div class={section.members.length > 1 ? "card-grid" : ""} data-shuffle>
             {section.members.map((member) => (
-              <article class={`profile-card${section.large ? " large" : ""}`}>
-                <div class="avatar"><img src={member.photo} alt={`Portrait of ${member.name}`} loading="lazy" /></div>
+              <article class={`profile-card${section.large ? " large" : ""}`} id={member.id}>
+                {member.data.photo ? (
+                  <div class="avatar">
+                    <Image
+                      src={member.data.photo}
+                      alt={`Portrait of ${member.data.name}`}
+                      width={144}
+                      height={144}
+                      fit="cover"
+                      position="attention"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div class="avatar avatar-initials" aria-hidden="true">{initials(member)}</div>
+                )}
                 <div class="profile-meta">
-                  <strong>{member.name}</strong>
-                  {member.role && <span class="profile-role">{member.role}</span>}
-                  <a href={`mailto:${member.email}`}>{member.email}</a>
-                  <p>{member.bio}</p>
-                  {member.links && member.links.length > 0 && (
+                  <strong>{member.data.name}</strong>
+                  {member.data.role && <span class="profile-role">{member.data.role}</span>}
+                  {member.data.email && <a href={`mailto:${member.data.email}`}>{member.data.email}</a>}
+                  {member.data.bio && <p>{member.data.bio}</p>}
+                  {member.data.links.length > 0 && (
                     <div class="profile-links">
-                      {member.links.map((link) => (
+                      {member.data.links.map((link) => (
                         <a href={link.href}>{link.label}</a>
                       ))}
                     </div>
@@ -196,5 +84,6 @@ const sections: Section[] = [
         </div>
       ))}
     </div>
+    <Shuffle />
   </section>
 </BaseLayout>

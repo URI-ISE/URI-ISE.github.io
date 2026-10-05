@@ -3,8 +3,13 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   build: {
-    format: 'file', // So HTML files are emitted as index.html, about.html instead of about/index.html (easier migration)
+    format: 'file', // Emit people.html etc.; GitHub Pages serves them at extensionless URLs (/people)
   },
   site: 'https://www.iseuri.org',
+  // Old URLs kept alive. Targets must not end in "/" (GitHub Pages would 404 on /people/).
+  redirects: {
+    '/projects': '/research',
+    '/roster': '/people',
+  },
   integrations: [sitemap()],
 });

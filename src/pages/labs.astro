@@ -6,9 +6,9 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import capstonePhoto from "../assets/photos/capstone-demo-day.jpg";
-import kirkPhoto from "../assets/photos/kirk-uri.png";
-import fcaePhoto from "../assets/photos/fcae-uri.png";
-import supportRoomPhoto from "../assets/photos/juan-lopez-working.jpg";
+import vehicleLabPhoto from "../assets/photos/vehicle-tracking-lab.jpeg";
+import gradLoungePhoto from "../assets/photos/grad-lounge.jpeg";
+import supportRoomPhoto from "../assets/photos/lab-support-room.jpeg";
 ---
 
 <BaseLayout
@@ -39,19 +39,19 @@ import supportRoomPhoto from "../assets/photos/juan-lopez-working.jpg";
           <p>Primary Industry 4.0 testbed for capstone projects and research, featuring collaborative robotics, integrated CNC capabilities, and dynamic automation.</p>
         </article>
         <article class="lab-room">
-          <Image class="lab-room-img" src={kirkPhoto} alt="KIRK Resources Building" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
+          <Image class="lab-room-img" style="object-position: center 45%;" src={vehicleLabPhoto} alt="Open garage door of the Driver and Vehicle Tracking Research Laboratory, showing a CNC machine and workbenches inside" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
           <h3>Vehicular Vision &amp; Tracking Lab</h3>
           <p class="lab-meta">KIRK Resources · Kingston, RI 02881</p>
           <p>Houses vision-focused research alongside higher-powered laser cutting and 3-D printing resources used across multiple lab projects.</p>
         </article>
         <article class="lab-room">
-          <Image class="lab-room-img" src={fcaePhoto} alt="Fascitelli Center for Advanced Engineering" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
+          <Image class="lab-room-img" src={gradLoungePhoto} alt="Graduate students working at cubicle workstations in the sunlit FCAE graduate lounge" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
           <h3>Graduate Lounge</h3>
           <p class="lab-meta">FCAE, Floor 2 · Kingston, RI 02881</p>
           <p>Collaborative workspace for graduate students — writing, analysis, and project coordination.</p>
         </article>
         <article class="lab-room">
-          <Image class="lab-room-img" src={supportRoomPhoto} alt="Student working at a multi-monitor workstation beside research posters" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
+          <Image class="lab-room-img" style="object-position: center 62%;" src={supportRoomPhoto} alt="Lab support room with a large printed grid table for robot testing, workstations, and a whiteboard" width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1120px) 560px, (min-width: 700px) 50vw, 100vw" />
           <h3>Lab Support Room</h3>
           <p class="lab-meta">FCAE · Kingston, RI 02881</p>
           <p>Additional workspace and storage supporting ongoing testbed research and equipment maintenance.</p>
